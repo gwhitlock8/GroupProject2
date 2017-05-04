@@ -1,2 +1,2 @@
 # Party Sherpa
-## Contributors: ### emkamp, ### paulv2016, ### StephenPino, ### gwhitlock8
+## Contributors: emkamp, paulv2016, StephenPino, gwhitlock8
