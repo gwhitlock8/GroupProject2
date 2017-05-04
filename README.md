@@ -1,2 +1,2 @@
 # GroupProject2
-Group Project 2
+## Contributors:
