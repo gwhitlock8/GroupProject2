@@ -6,6 +6,9 @@
 // =============================================================
 var express = require("express");
 var bodyParser = require("body-parser");
+var passport   = require('passport');
+var session    = require('express-session');
+var exphbs = require('express-handlebars')
 
 // Sets up the Express App
 // =============================================================
@@ -14,6 +17,10 @@ var PORT = process.env.PORT || 8080;
 
 // Requiring our models for syncing
 var db = require("./models");
+
+//For Handlebars
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
 
 // Sets up the Express app to handle data parsing
 app.use(bodyParser.json());
@@ -24,9 +31,20 @@ app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 // Static directory
 app.use(express.static("./public"));
 
+// For Passport
+ 
+app.use(session({ secret: 'keyboard cat',resave: true, saveUninitialized:true})); // session secret
+ 
+app.use(passport.initialize());
+ 
+app.use(passport.session()); // persistent login sessions
+
+//load passport strategies
+require('./config/passport/passport.js')(passport, db.user);
+
 // Routes =============================================================
 
-require("./routes/html-routes.js")(app);
+require('./routes/user-routes.js')(app, passport);
 
 // Syncing our sequelize models and then starting our express app
 db.sequelize.sync({ force: true }).then(function() {
