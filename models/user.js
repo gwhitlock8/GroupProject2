@@ -45,9 +45,17 @@ module.exports = function(sequelize, Sequelize) {
         status: {
             type: Sequelize.ENUM('active', 'inactive'),
             defaultValue: 'active'
+        },
+
+        facebookId: {
+            type: Sequelize.STRING
+        },
+        
+        facebookToken: {
+            type: Sequelize.STRING
         }
- 
- 
+
+
     });
  
     return User;

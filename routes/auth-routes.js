@@ -12,18 +12,22 @@ module.exports = function (app, passport) {
 
     }
 
+    // Local signup route
     app.get("/signup", (req, res) => {
         res.render("signup");
     });
 
+    // Local signin route
     app.get("/signin", (req, res) => {
         res.render("signin");
     });
 
+    // Dashboard route, protected by user logged in
     app.get("/dashboard", isLoggedIn, (req, res) => {
         res.render("dashboard");
     });
 
+    // Logout Route, destroys current session when accessed
     app.get("/logout", (req, res) => {
         req.session.destroy((err) => {
             res.redirect('/');
@@ -41,4 +45,18 @@ module.exports = function (app, passport) {
         failureRedirect: '/signin'
     }
     ));
+
+    // =====================================
+    // FACEBOOK ROUTES =====================
+    // =====================================
+    // route for facebook authentication and login
+    app.get('/auth/facebook', passport.authenticate('facebook', { scope: ['email'] }));
+
+    // handle the callback after facebook has authenticated the user
+    app.get('/auth/facebook/callback',
+        passport.authenticate('facebook', {
+            successRedirect: '/dashboard',
+            failureRedirect: '/'
+        }));
+
 }

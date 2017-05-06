@@ -1,11 +1,24 @@
 <!DOCTYPE html>
 <html>
- 
+
 <head>
     <title></title>
+
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <!-- load bootstrap css -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <!-- load fontawesome -->
+    <style>
+        body {
+            padding-top: 80px;
+        }
+    </style>
+
 </head>
- 
+
 <body>
+
+    
     <form id="signin" name="signin" method="post" action="signin">
         <label for="email">Email Address</label>
         <input class="text" name="email" type="text" />
@@ -13,7 +26,41 @@
         <input name="password" type="password" />
         <input class="btn" type="submit" value="Sign In" />
     </form>
- 
+
+    <div class="container">
+
+        <div class="jumbotron text-center">
+            <h1><span class="fa fa-lock"></span> Node Authentication</h1>
+
+            <p>Login or Register with:</p>
+
+            <a href="/auth/facebook" class="btn btn-primary"><span class="fa fa-facebook"></span> Facebook</a>
+
+        </div>
+
+    </div>
+
 </body>
- 
+
+<script>
+    window.fbAsyncInit = function () {
+        FB.init({
+            appId: '1558493570849816',
+            xfbml: true,
+            version: 'v2.9'
+        });
+        FB.AppEvents.logPageView();
+    };
+
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) { return; }
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+
+</script>
+
+
 </html>
