@@ -1,0 +1,110 @@
+.container {
+    margin-top: 60px;
+}
+
+#splash {
+    text-align: center;
+}
+
+#splash h1 {
+    text-align: center;
+}
+
+#splash .logo {
+    width: 300px;
+    height: 300px;
+    background-color: #ccc;
+    margin: 40px auto;
+}
+
+nav {
+    margin-top: -60px;
+}
+
+nav .logo {
+    width: 40px;
+    height: 40px;
+    margin: 6px;
+    background-color: #ccc;
+    float: left;
+}
+
+.navbar-brand {
+    padding: 17px 15px;
+    font-size: 20px;
+}
+
+.navbar-collapse {
+    background-color: #eee;
+    border-color: #bbb;
+}
+
+.navbar-inverse {
+    border-color: #bbb;
+}
+
+.btn-list {
+    display: block;
+    width: 100%;
+    text-align: left;
+    border: 2px solid #ccc;
+    border-radius: 0;
+    padding: 10px;
+    margin-bottom: -1px;
+}
+
+.btn-list i {
+    text-align: right;
+    float: right;
+    margin: 5px 0 0 auto;
+}
+
+h2, h3 {
+    border-bottom: 1px solid #ccc;
+}
+
+h2{margin-bottom:20px;}
+
+h3{
+	margin-top:20px;
+	border-top:3px solid #ddd;
+	padding:10px 0;
+}
+
+#profile {
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 20px;
+}
+
+#profile i {
+    font-size: 64px;
+}
+
+.half-wide {
+    width: 50%;
+}
+
+#splash .half-wide .btn {
+    display: block;
+    margin-left: 5px;
+    margin-right: 0;
+}
+
+#splash .half-wide:first-of-type .btn {
+margin-left:0;
+margin-right:5px;
+}
+
+#event-rsvp { padding:5px 0; line-height:32px;}
+
+/* ---------------  TOGGLE SWITCHES ---------------
+-------------------------------------------------*/
+
+.toggle.btn {
+    border-radius: 4px;
+}
+
+#event-rsvp .toggle {
+    float: right;
+}
