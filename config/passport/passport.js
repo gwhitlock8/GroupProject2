@@ -168,13 +168,14 @@ module.exports = function (passport, user) {
         clientID: configAuth.facebookAuth.clientID,
         clientSecret: configAuth.facebookAuth.clientSecret,
         callbackURL: configAuth.facebookAuth.callbackURL,
-        profileFields: ['id', 'displayName', 'email'],
+        profileFields: ['id', 'email', 'first_name', 'last_name'],
         enableProof: true
 
     },
 
         // facebook will send back the token and profile
         function (accessToken, refreshToken, profile, done) {
+            console.log(profile);
 
             // asynchronous
             process.nextTick(function () {
@@ -197,15 +198,13 @@ module.exports = function (passport, user) {
                         return done(null, user); // user found, return that user
                     } else {
                         // if there is no user found with that facebook id, create them
-                        var nameArray = profile.displayName.split(" ");
                         var data =
                             {
                                 email: profile.emails[0].value,
                                 password: profile.id,
-                                firstname: nameArray[0],
-                                lastname: nameArray[1],
-                                facebookId: profile.id,
-                                facebookToken: profile.accessToken
+                                firstname: profile.name.givenName,
+                                lastname: profile.name.familyName,
+                                facebookId: profile.id
                             }
 
                         User.create(data).then(function (newUser, created) {

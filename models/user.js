@@ -50,11 +50,6 @@ module.exports = function(sequelize, Sequelize) {
         facebookId: {
             type: Sequelize.STRING
         },
-        
-        facebookToken: {
-            type: Sequelize.STRING
-        }
-
 
     });
  
