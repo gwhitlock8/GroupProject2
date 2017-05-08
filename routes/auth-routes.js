@@ -12,6 +12,24 @@ module.exports = function (app, passport) {
 
     }
 
+    app.get("/phonecheck/:id", (req, res) => {
+        var id = req.params.id;
+        console.log(db.user);
+        db.user.findOne({
+            where: {
+                id: id
+            }
+        }).then(function (data) {
+            console.log(data);
+            if (data.phone) {
+                res.redirect("/dashboard");
+            }
+            else {
+                res.redirect("/addphone");
+            }
+        });
+    });
+
     // Local signup route
     app.get("/signup", (req, res) => {
         res.render("signup");
@@ -35,10 +53,14 @@ module.exports = function (app, passport) {
     });
 
     app.post('/signup', passport.authenticate('local-signup', {
-        successRedirect: '/dashboard',
+
         failureRedirect: '/signup'
+
+    }), function (req, res) {
+        console.log("This is user info: " + req.session.passport.user);
+        res.redirect("/phonecheck/" + req.session.passport.user);
     }
-    ));
+    );
 
     app.post('/signin', passport.authenticate('local-signin', {
         successRedirect: '/dashboard',
@@ -55,8 +77,11 @@ module.exports = function (app, passport) {
     // handle the callback after facebook has authenticated the user
     app.get('/auth/facebook/callback',
         passport.authenticate('facebook', {
-            successRedirect: '/dashboard',
             failureRedirect: '/'
-        }));
+        }), function (req, res) {
+            console.log("facebook info: " + req.session.passport.user);
+            res.redirect("/phonecheck/" + req.session.passport.user);
+        }
+    );
 
 }
