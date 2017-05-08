@@ -17,6 +17,10 @@ module.exports = function(sequelize, Sequelize) {
             type: Sequelize.STRING,
             notEmpty: true
         },
+        
+        phone: {
+            type: Sequelize.STRING,
+        },
  
         username: {
             type: Sequelize.TEXT
