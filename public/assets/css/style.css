@@ -156,7 +156,7 @@ nav .logo {
     border-color: #bbb;
 }
 
-.btn-list {
+.container .btn-list {
     display: block;
     width: 100%;
     text-align: left;
@@ -166,7 +166,7 @@ nav .logo {
     margin-bottom: -1px;
 }
 
-.btn-list i {
+.container .btn-list i {
     text-align: right;
     float: right;
     margin: 5px 0 0 auto;

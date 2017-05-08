@@ -6,8 +6,8 @@
 // =============================================================
 var express = require("express");
 var bodyParser = require("body-parser");
-var passport   = require('passport');
-var session    = require('express-session');
+var passport = require('passport');
+var session = require('express-session');
 var exphbs = require('express-handlebars')
 
 // Sets up the Express App
@@ -32,11 +32,11 @@ app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 app.use(express.static("./public"));
 
 // For Passport
- 
-app.use(session({ secret: 'keyboard cat',resave: true, saveUninitialized:true})); // session secret
- 
+
+app.use(session({ secret: 'keyboard cat', resave: true, saveUninitialized: true })); // session secret
+
 app.use(passport.initialize());
- 
+
 app.use(passport.session()); // persistent login sessions
 
 //load passport strategies
@@ -48,7 +48,7 @@ require('./routes/auth-routes.js')(app, passport);
 
 // Syncing our sequelize models and then starting our express app
 db.sequelize.sync({ force: true }).then(function() {
-  app.listen(PORT, function() {
-    console.log("App listening on PORT " + PORT);
-  });
+    app.listen(PORT, function() {
+        console.log("App listening on PORT " + PORT);
+    });
 });

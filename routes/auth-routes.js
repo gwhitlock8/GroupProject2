@@ -1,6 +1,6 @@
 var db = require("../models");
 
-module.exports = function (app, passport) {
+module.exports = function(app, passport) {
 
     function isLoggedIn(req, res, next) {
 
@@ -22,8 +22,9 @@ module.exports = function (app, passport) {
         res.render("signin");
     });
 
+    //removed isLoggedIn,
     // Dashboard route, protected by user logged in
-    app.get("/dashboard", isLoggedIn, (req, res) => {
+    app.get("/dashboard", (req, res) => {
         res.render("dashboard");
     });
 
@@ -37,14 +38,12 @@ module.exports = function (app, passport) {
     app.post('/signup', passport.authenticate('local-signup', {
         successRedirect: '/dashboard',
         failureRedirect: '/signup'
-    }
-    ));
+    }));
 
     app.post('/signin', passport.authenticate('local-signin', {
         successRedirect: '/dashboard',
         failureRedirect: '/signin'
-    }
-    ));
+    }));
 
     // =====================================
     // FACEBOOK ROUTES =====================
