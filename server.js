@@ -44,9 +44,9 @@ app.use(passport.session()); // persistent login sessions
 
     // Local signin route
 app.get("/", (req, res) => {
-    console.log('Entered')
-    res.send('signin')
+    res.render("signin");
 });
+
 //load passport strategies
 require('./config/passport/passport.js')(passport, db.user);
 app.use('/', routes.authRoutes);
