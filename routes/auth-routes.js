@@ -12,7 +12,7 @@ function isLoggedIn(req, res, next) {
 
 }
 
-router.get("/phonecheck/:id", (req, res) => {
+router.get("/signin/:id", (req, res) => {
     var id = req.params.id;
     console.log(db.user);
     db.user.findOne({
@@ -24,12 +24,15 @@ router.get("/phonecheck/:id", (req, res) => {
         if (data.phone) {
             res.redirect("/dashboard");
         } else {
-            res.redirect("/addphone");
+            res.json({
+                phone: false,
+                user_id: id
+            });
         }
     });
 });
 
-// Local signup route
+// Local signin route
 router.get("/signin", (req, res) => {
     res.render("signin");
 });
@@ -52,7 +55,7 @@ router.post('/signup', passport.authenticate('local-signup', {
     failureRedirect: '/signup'
 }), function(req, res) {
     console.log("This is user info: " + req.session.passport.user);
-    res.redirect("/phonecheck/" + req.session.passport.user);
+    res.redirect("/signin/" + req.session.passport.user);
 });
 
 router.post('/signin', passport.authenticate('local-signin', {
