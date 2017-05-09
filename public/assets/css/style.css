@@ -235,15 +235,8 @@ h3 {
     width: 50%;
 }
 
-#splash .half-wide .btn {
-    display: block;
+.half-wide.pull-right .btn {
     margin-left: 5px;
-    margin-right: 0;
-}
-
-#splash .half-wide:first-of-type .btn {
-    margin-left: 0;
-    margin-right: 5px;
 }
 
 #event-rsvp {

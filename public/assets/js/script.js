@@ -20,6 +20,7 @@ $(document).ready(function() {
     console.log("front-end js loaded");
     $(".alert").hide();
     $("#event-details").hide();
+    $("#event-create").hide();
 
     $('#toggle-rsvp').bootstrapToggle({
         on: 'Enabled',
@@ -46,6 +47,14 @@ $(document).ready(function() {
         $("#event-details").show();
     }
 
+    function createEvent() {
+        $("#user-menu").hide();
+        $("#event-create").show();
+    }
+
+    /* ------------   DATE PICKER ----------- */
+    $('#container-new-event-datetime').datetimepicker();
+
     /* ----------------------------------------
     ------------  CLICK EVENTS  ------------*/
 
@@ -70,5 +79,9 @@ $(document).ready(function() {
 
     $("#modal-event-delete button").on("click", function() {
         goToEvents();
+    });
+
+    $("#btn-event-create").on("click", function() {
+        createEvent();
     });
 });
