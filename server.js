@@ -10,7 +10,6 @@ var passport = require('passport');
 var session = require('express-session');
 var exphbs = require('express-handlebars')
 var routes = require('./routes')
-var morgan = require('morgan')
 // Sets up the Express App
 // =============================================================
 var app = express();
@@ -18,7 +17,6 @@ var PORT = process.env.PORT || 8080;
 
 // Requiring our models for syncing
 var db = require("./models");
-app.use(morgan('dev'))
 
 //For Handlebars
 app.engine("handlebars", exphbs({ defaultLayout: "main" }));

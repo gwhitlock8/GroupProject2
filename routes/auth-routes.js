@@ -1,5 +1,5 @@
 var db = require("../models");
-var passport = require('passport')
+var passport = require('passport');
 var router = require('express').Router();
 
 function isLoggedIn(req, res, next) {
@@ -53,7 +53,7 @@ router.get("/logout", (req, res) => {
 });
 
 router.post('/signup', passport.authenticate('local-signup', {
-    failureRedirect: '/signup'
+    failureRedirect: '/dashboard'
 }), function (req, res) {
     console.log("This is user info: " + req.session.passport.user);
     res.redirect("/signin/" + req.session.passport.user);
