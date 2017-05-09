@@ -1,23 +1,40 @@
 {
-  "name": "twiliotest",
+  "name": "partysherpa",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gwhitlock8/PartySherpa.git"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.17.1",
     "dotenv": "^4.0.0",
     "express": "^4.15.2",
     "express-handlebars": "^3.0.0",
+    "express-session": "^1.15.2",
     "http": "0.0.0",
     "method-override": "^2.3.8",
+    "morgan": "^1.8.1",
     "mysql": "^2.13.0",
     "node-webhooks": "^1.1.32",
+    "passport": "^0.3.2",
+    "passport-facebook": "^2.1.1",
+    "passport-local": "^1.0.0",
     "sequelize": "^3.30.4",
     "twilio": "^3.0.0"
-  }
+  },
+  "bugs": {
+    "url": "https://github.com/gwhitlock8/PartySherpa/issues"
+  },
+  "homepage": "https://github.com/gwhitlock8/PartySherpa#readme",
+  "devDependencies": {},
+  "description": ""
 }

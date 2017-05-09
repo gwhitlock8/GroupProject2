@@ -1,15 +1,15 @@
-module.exports = function(sequelize, DataTypes) {
-    var Events = sequelize.define("Events", {
+module.exports = function(sequelize, Sequelize) {
+    var Events = sequelize.define("events", {
         event_name: {
-            type: DataTypes.STRING,
+            type: Sequelize.STRING,
             allowNull: false
         },
         event_date: {
-            type: DataTypes.DATE,
+            type: Sequelize.DATE,
             allowNull: false
         },
         location: {
-            type: DataTypes.STRING,
+            type: Sequelize.STRING,
             allowNull: false
         },
         createdAt: {
@@ -25,7 +25,7 @@ module.exports = function(sequelize, DataTypes) {
     },{
         classMethods: {
             associate: function(models) {
-                Events.belongsToMany(models.Users,{through: models.UserEvents});
+                Events.belongsToMany(models.user,{through: models.user_event});
             }
         }  
     });

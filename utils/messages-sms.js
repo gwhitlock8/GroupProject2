@@ -33,14 +33,14 @@ exports.receiveMessage = function(req,res){
     var msgBody = req.body.Body;
     msgBody = msgBody.toLowerCase().trim();
 
-    db.Users.find({
+    db.user.find({
         where: {
             phone: msgFrom
         }
     }).then(function (data){
         console.log(data);
         if(msgBody === 'chicken' || msgBody === 'beef' || msgBody === 'fish'){
-            db.UserEvents.update(
+            db.user_event.update(
                 {attending:true},
                 {where: {UserId: data.id}}
             ).then(function(){
@@ -52,20 +52,17 @@ exports.receiveMessage = function(req,res){
                 </Response>
                 `);
             });
-        };   
-        
+        } else if (msgBody === 'no') {
+            res.send(`
+                <Response>
+                    <Message>
+                        Hello ${msgFrom}. You said: ${msgBody}
+                    </Message>
+                </Response>
+            `);
+        }
     });
-};
-
-    
-
-//     // res.send(`
-//     //     <Response>
-//     //         <Message>
-//     //             Hello ${msgFrom}. You said: ${msgBody}
-//     //         </Message>
-//     //     </Response>
-//     `);
-// };
+};   
+        
 
 

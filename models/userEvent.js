@@ -1,17 +1,17 @@
-module.exports = function(sequelize, DataTypes) {
-    var UsersEvents = sequelize.define("UserEvents", {
+module.exports = function(sequelize, Sequelize) {
+    var UserEvent = sequelize.define("user_event", {
         host: {
-            type: DataTypes.STRING,
+            type: Sequelize.STRING,
             allowNull: false,
             defaultValue: false
         },
         attending: {
-            type: DataTypes.BOOLEAN,
+            type: Sequelize.BOOLEAN,
             allowNull: false,
             defaultValue: false
         },
         food: {
-            type: DataTypes.STRING,
+            type: Sequelize.STRING,
             allowNull: true
         },
         createdAt: {
@@ -27,12 +27,12 @@ module.exports = function(sequelize, DataTypes) {
     },{
         classMethods: {
             associate: function(models) {
-                UsersEvents.belongsTo(models.Users);
+                UserEvent.belongsTo(models.user);
             }
         }  
       
     });
-    return UsersEvents;
+    return UserEvent;
 };
 
 

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Party Sherpa</title>
+    <script src="https://use.fontawesome.com/2344ecbafc.js"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" id="btn-navmenu" class="disabled navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <div class="logo"></div>
+                <a class="navbar-brand" href="#">Party Sherpa</a>
+            </div>
+            <div id="navbar" class="collapse navbar-collapse">
+                <div id="profile">
+                    <i class="fa fa-user pull-left" aria-hidden="true"></i>
+                    <h3>Bob Hope</h3>
+                    <p>Logged in with Facebook</p>
+                </div>
+                <p><i class="fa fa-phone" aria-hidden="true"></i> (555) 123-9999</p>
+                <p><a class="btn btn-default btn-lg btn-block" href="/dashboard" id="btn-events">My Events</a></p>
+                <p><a class="btn btn-default btn-lg btn-block" href="/signin" id="btn-logout">Log Out</a></p>
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+    </nav>
+
+    <div class="container" id="user-menu">
+        <h2>Host</h2>
+        <a class="btn btn-list" id="123">Create New Event<i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+        <a class="btn btn-list" id="456">Manage 10th Anniversary<i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+        <hr />
+        <h2>Guest</h2>
+        <a class="btn btn-list" id="btn-789">Gavin &amp; Christine's Wedding<i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+    </div>
+
+    <div class="container" id="event-details">
+        <h2 class="event-name">Gavin &amp; Christine's Wedding</h2>
+        <div id="event-rsvp">
+            <p>RSVP Status
+                <input id="toggle-rsvp" name="rsvp" type="checkbox" checked data-toggle="toggle" data-width="120" data-height="34" data-on="Attending"
+                    data-off="Can't Go" />
+            </p>
+        </div>
+        <div id="event-meals">
+            <div class="radio" id="event-meal">
+                <h3>Meal Options</h3>
+                <label>
+                    <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1"> Chicken Parmesan
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="optionsRadios" id="optionsRadios2" value="option2"> Flatiron Steak
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="optionsRadios" id="optionsRadios3" value="option3"> Vegetarian
+                </label>
+            </div>
+        </div>
+        <div id="event-details">
+            <h3>Event Details</h3>
+            <p>Wednesday, August 7, 2017
+                <br /> Dress Code: Formal</p>
+
+            <p>123 Bob Street,
+                <br /> Sometown, State, 11111</p>
+
+            <p>Parking: Valet, $6</p>
+
+            <p>Ceremony 2:00pm - 4:00pm
+                <br /> Reception 5:00pm - 10:00pm</p>
+        </div>
+        <hr />
+        <button class="btn btn-default btn-lg btn-block">Add to iCal</button>
+        <button class="btn btn-default btn-lg btn-block">Add to Google Calendar</button>
+        <hr />
+        <button class="btn btn-danger btn-lg btn-block" data-toggle="modal" data-target="#modal-event-delete">Delete This Event</button>
+
+        <!-- ================================================== -->
+        <!-- =================     MODALS     ================= -->
+
+        <div id="modal-event-delete" class="modal fade" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title text-danger">Delete This Event</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Are you sure you wan't to delete <span class="event-name">Gavin &amp; Christine's Wedding</span>?</p>
+                        <p>Your RSVP will be set to <strong>Not Attending</strong> and you will not be able to access the event's
+                            information.
+                        </p>
+                        <p class="lead text-danger">This action cannot be undone.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-danger btn-block" data-dismiss="modal">Yes, Remove me from the Event and Delete it</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================================================== -->
+        <!-- ================     SCRIPTS     ================= -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+            crossorigin="anonymous"></script>
+        <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+        <script src="/assets/js/script.js"></script>
+</body>
+
+</html>
