@@ -113,6 +113,7 @@
 
 .container {
     margin-top: 60px;
+    margin-bottom: 20px;
 }
 
 #splash {
@@ -128,6 +129,10 @@
     height: 300px;
     background-color: #ccc;
     margin: 40px auto;
+}
+
+nav .container {
+    margin-bottom: 0;
 }
 
 nav {
@@ -160,10 +165,23 @@ nav .logo {
     display: block;
     width: 100%;
     text-align: left;
-    border: 2px solid #ccc;
-    border-radius: 0;
+    border: 1px solid #ddd;
     padding: 10px;
-    margin-bottom: -1px;
+    border-radius: 4px;
+    margin: 3px 0 3px 0;
+    background: #fcfcfc;
+    background: -moz-linear-gradient(top, #fcfcfc 0%, #e1eef7 100%);
+    background: -webkit-linear-gradient(top, #fcfcfc 0%, #e1eef7 100%);
+    background: linear-gradient(to bottom, #fcfcfc 0%, #e1eef7 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#fcfcfc', endColorstr='#e1eef7', GradientType=0);
+}
+
+.container .btn-list:hover {
+    background: #f2f3f7;
+    background: -moz-linear-gradient(top, #f2f3f7 0%, #d3e0ed 100%);
+    background: -webkit-linear-gradient(top, #f2f3f7 0%, #d3e0ed 100%);
+    background: linear-gradient(to bottom, #f2f3f7 0%, #d3e0ed 100%);
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#f2f3f7', endColorstr='#d3e0ed', GradientType=0);
 }
 
 .container .btn-list i {

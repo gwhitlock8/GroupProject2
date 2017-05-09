@@ -19,7 +19,6 @@ $(function() {
 $(document).ready(function() {
     console.log("front-end js loaded");
     $(".alert").hide();
-    $("#user-menu").hide();
     $("#event-details").hide();
 
     $('#toggle-rsvp').bootstrapToggle({
@@ -36,20 +35,13 @@ $(document).ready(function() {
     }
     /* -------------------------------------------
     ---------------    NAVIGATION    -----------*/
-    function goToSplash() {
-        $("#splash").show();
-        $("#user-menu").hide();
-        $("#event-details").hide();
-    }
 
     function goToEvents() {
-        $("#splash").hide();
         $("#user-menu").show();
         $("#event-details").hide();
     }
 
     function goToEventDetails() {
-        $("#splash").hide();
         $("#user-menu").hide();
         $("#event-details").show();
     }
@@ -66,22 +58,17 @@ $(document).ready(function() {
         goToEventDetails();
     });
 
-    $("#events").on("click", function() {
-        goToEvents();
-    });
-
     $("#btn-events").on("click", function() {
         $("#btn-navmenu").click();
         goToEvents();
     });
 
-    $("#btn-logout").on("click", function() {
-        $("#btn-navmenu").click();
-        goToSplash();
-    });
-
     $(".submit").on("click", function() {
         $(".modal").modal("hide");
+        goToEvents();
+    });
+
+    $("#modal-event-delete button").on("click", function() {
         goToEvents();
     });
 });
