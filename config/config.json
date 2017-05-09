@@ -1,9 +1,9 @@
 {
   "development": {
     "username": "root",
-    "password": null,
-    "database": "partysherpa_db",
-    "host": "127.0.0.1",
+    "password": "password",
+    "database": "twilio_db",
+    "host": "localhost",
     "dialect": "mysql"
   },
   "test": {

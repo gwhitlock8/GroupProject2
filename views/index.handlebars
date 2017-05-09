@@ -1,23 +1,56 @@
-<!DOCTYPE html>
-<html>
- 
-<head>
-    <title></title>
-</head>
- 
-<body>
-    <form id="signup" name="signup" method="post" action="/signup">
-        <label for="email">Email Address</label>
-        <input class="text" name="email" type="email" />
-        <label for="firstname">Firstname</label>
-        <input name="firstname" type="text" />
-        <label for="lastname">Lastname</label>
-        <input name="lastname" type="text" />
-        <label for="password">Password</label>
-        <input name="password" type="password" />
-        <input class="btn" type="submit" value="Sign Up" />
-    </form>
- 
-</body>
- 
-</html>
+<div class="container-fluid">
+     <div class="row">
+          <div class="col-xs-12">
+               <div class="text-center">
+                    <img id="burgerLogo" src="/assets/images/burger.png">
+               </div>
+          </div>
+     </div>
+
+  <div class="row">
+    <div class="col-sm-6 col-xs-12">
+      <h1>The Menu</h1>
+
+        {{#each burgers}}
+          {{#unless this.devoured}}
+            <div class="">
+            <p class="menuItem">  {{this.burger_name}} </p>
+
+              <form class="burgerButton" action="burgers/update/devour/{{this.id}}?_method=PUT" method="POST">
+                <button class="btn btn-primary" type="submit">Eat Da Burger!</button>
+              </form>
+
+            <hr class="divide">
+          </div>
+          {{/unless}}
+        {{/each}}
+
+    </div>
+    <div class="col-sm-6 col-xs-12">
+      <h1>Devoured Burgers</h1>
+      <ul>
+        {{#each burgers}}
+          {{#if this.devoured}}
+            <li class="the-devoured" id="devouredBurgers">{{this.burger_name}}</li>
+          {{/if}}
+        {{/each}}
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="make-burger-wrapper">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-xs-12 make-burger">
+        <h1>Make Your Own!</h1>
+        <form class="form-inline" action="burgers/create" method="POST">
+          <div class="form-group">
+            <input type="text" id="burgerInput" name="name" class="form-control" placeholder="Type the name of your burger..." required>
+          </div>
+          <button class="btn btn-primary" type="submit">Make Burger!</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

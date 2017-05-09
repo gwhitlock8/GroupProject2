@@ -1,13 +1,16 @@
 module.exports = function(sequelize, DataTypes) {
-    var Users = sequelize.define("Users", {
-        name: {
+    var Events = sequelize.define("Events", {
+        event_name: {
             type: DataTypes.STRING,
             allowNull: false
         },
-        phone: {
+        event_date: {
+            type: DataTypes.DATE,
+            allowNull: false
+        },
+        location: {
             type: DataTypes.STRING,
-            allowNull: false,
-            defaultValue: ""
+            allowNull: false
         },
         createdAt: {
             type: 'TIMESTAMP',
@@ -19,13 +22,12 @@ module.exports = function(sequelize, DataTypes) {
             defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
             allowNull: false
         }
-    },
-        {
-            classMethods: {
-                associate: function(models) {
-                    Users.belongsToMany(models.Events,{through: models.UserEvents});
-                }  
+    },{
+        classMethods: {
+            associate: function(models) {
+                Events.belongsToMany(models.Users,{through: models.UserEvents});
             }
-        });
-    return Users;
+        }  
+    });
+    return Events;
 }
