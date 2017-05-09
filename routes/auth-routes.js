@@ -1,6 +1,6 @@
 var db = require("../models");
-var passport = require('passport')
-var router = require('express'). Router();
+var passport = require('passport');
+var router = require('express').Router();
 
 function isLoggedIn(req, res, next) {
 
@@ -19,15 +19,16 @@ router.get("/signin/:id", (req, res) => {
         where: {
             id: id
         }
-    }).then(function(data) {
+    }).then(function (data) {
         console.log(data);
         if (data.phone) {
             res.redirect("/dashboard");
         } else {
-            res.json({
-                phone: false,
+            var info = {
+                phone: true,
                 user_id: id
-            });
+            }
+            res.render("signin", info);
         }
     });
 });
@@ -52,8 +53,8 @@ router.get("/logout", (req, res) => {
 });
 
 router.post('/signup', passport.authenticate('local-signup', {
-    failureRedirect: '/signup'
-}), function(req, res) {
+    failureRedirect: '/dashboard'
+}), function (req, res) {
     console.log("This is user info: " + req.session.passport.user);
     res.redirect("/signin/" + req.session.passport.user);
 });
@@ -74,9 +75,9 @@ router.get('/auth/facebook/callback',
     passport.authenticate('facebook', {
         failureRedirect: '/'
     }),
-    function(req, res) {
+    function (req, res) {
         console.log("facebook info: " + req.session.passport.user);
-        res.redirect("/phonecheck/" + req.session.passport.user);
+        res.redirect("/signin/" + req.session.passport.user);
     }
 );
 
