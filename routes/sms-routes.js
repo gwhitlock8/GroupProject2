@@ -62,22 +62,5 @@ module.exports = function(app) {
             
     });
 
-    app.get('/test', function(req,res){
-        db.user_event.find({
-            where: {
-                host: false
-            },
-            include: [{
-                model: db.user,
-                attributes: ['phone'],
-                where: {
-                    phone: '+18326431415'
-                } 
-            }]
-        }).then(function(data){
-            res.json(data);
-        });
-    });
-
 }
 
