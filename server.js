@@ -4,15 +4,14 @@ var methodOverride = require('method-override');
 var passport = require('passport');
 var session = require('express-session');
 var exphbs = require('express-handlebars')
-var morgan = require('morgan');
-var http = require('http');
+var routes = require('./routes')
+
 // Sets up the Express App
 // =============================================================
 var app = express();
 var PORT = process.env.PORT || 8080;
 
 var db = require("./models");
-app.use(morgan('dev'))
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -38,9 +37,9 @@ app.use(passport.session()); // persistent login sessions
 
     // Local signin route
 app.get("/", (req, res) => {
-    console.log('Entered')
-    res.send('signin')
+    res.render("signin");
 });
+
 //load passport strategies
 require('./config/passport/passport.js')(passport, db.user);
 // app.use('/', routes.authRoutes);

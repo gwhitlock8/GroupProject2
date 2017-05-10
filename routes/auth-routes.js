@@ -1,5 +1,6 @@
 var db = require("../models");
-var passport = require('passport')
+var passport = require('passport');
+var router = require('express').Router();
 
 function isLoggedIn(req, res, next) {
 
@@ -10,73 +11,99 @@ function isLoggedIn(req, res, next) {
     res.redirect('/signin');
 
 }
-module.exports = function(app) {
-    app.get("/signin/:id", (req, res) => {
-        var id = req.params.id;
-        console.log(db.user);
-        db.user.findOne({
+
+router.get("/signin/:id", (req, res) => {
+    var id = req.params.id;
+    db.user.findOne({
+        where: {
+            id: id
+        }
+    }).then(function (data) {
+        if (data.phone) {
+            res.redirect("/dashboard/"+id);
+        } else {
+            var info = {
+                noPhone: true,
+                user_id: id
+            }
+            res.render("signin", info);
+        }
+    });
+
+router.post("/phone/:id", (req, res) => {
+    var id = req.params.id;
+    db.user.update(
+        {
+            phone: req.body.phone
+        }, {
             where: {
                 id: id
             }
-        }).then(function(data) {
-            console.log(data);
-            if (data.phone) {
-                res.redirect("/dashboard");
-            } else {
-                res.json({
-                    phone: false,
-                    user_id: id
-                });
-            }
+        }).then(function (data) {
+            res.redirect("/dashboard/"+id);
         });
+});
+
+
+//TODO: need to flesh out and figure out how to pull correct info
+router.get("/dashboard/:id", (req, res) => {
+    var id = req.params.id;
+    db.UserEvents.findOne({
+        where: { 
+            UserId: id
+        }
+    }).then(function(data){
+        res.render("dashboard", data);
     });
+})
 
-    // Local signin route
-    app.get("/signin", (req, res) => {
-        res.render("signin");
+// Local signin route
+router.get("/signin", (req, res) => {
+    res.render("signin");
+});
+
+//removed isLoggedIn,
+// Dashboard route, protected by user logged in
+router.get("/dashboard", (req, res) => {
+    res.render("dashboard");
+});
+
+// Logout Route, destroys current session when accessed
+router.get("/logout", (req, res) => {
+    req.session.destroy((err) => {
+        res.redirect('/');
     });
+});
 
+router.post('/signup', passport.authenticate('local-signup', {
+    failureRedirect: '/'
+}), function (req, res) {
+    console.log("This is user info: " + req.session.passport.user);
+    res.redirect("/signin/" + req.session.passport.user);
+});
 
-    //removed isLoggedIn,
-    // Dashboard route, protected by user logged in
-    app.get("/dashboard", (req, res) => {
-        res.render("dashboard");
-    });
-
-    // Logout Route, destroys current session when accessed
-    app.get("/logout", (req, res) => {
-        req.session.destroy((err) => {
-            res.redirect('/');
-        });
-    });
-
-    app.post('/signup', passport.authenticate('local-signup', {
-        failureRedirect: '/signup'
-    }), function(req, res) {
-        console.log("This is user info: " + req.session.passport.user);
-        res.redirect("/signin/" + req.session.passport.user);
-    });
-
-    app.post('/signin', passport.authenticate('local-signin', {
-        successRedirect: '/dashboard',
-        failureRedirect: '/signin'
-    }));
+router.post('/login', passport.authenticate('local-signin', {
+    failureRedirect: '/'
+}), function(req, res) {
+    res.redirect("/dashboard/" + req.session.passport.user)
+});
 
     // =====================================
     // FACEBOOK ROUTES =====================
     // =====================================
     // route for facebook authentication and login
-    app.get('/auth/facebook', passport.authenticate('facebook', { scope: ['email'] }));
+router.get('/auth/facebook', passport.authenticate('facebook', { scope: ['email'] }));
 
-    // handle the callback after facebook has authenticated the user
-    app.get('/auth/facebook/callback',
-        passport.authenticate('facebook', {
-            failureRedirect: '/'
-        }),
-        function(req, res) {
-            console.log("facebook info: " + req.session.passport.user);
-            res.redirect("/phonecheck/" + req.session.passport.user);
-        }
-    );
-}
+
+// handle the callback after facebook has authenticated the user
+router.get('/auth/facebook/callback',
+    passport.authenticate('facebook', {
+        failureRedirect: '/'
+    }),
+    function (req, res) {
+        console.log("facebook info: " + req.session.passport.user);
+        res.redirect("/signin/" + req.session.passport.user);
+    }
+);
+
 
