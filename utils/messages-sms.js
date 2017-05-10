@@ -27,22 +27,37 @@ exports.sendMessage = function(res,req) {
 
 //receive messages from guests
 exports.receiveMessage = function(req,res){   
-    // console.log(res.json);
-    // console.log(req.body);
+
     var msgFrom = req.body.From;
     var msgBody = req.body.Body;
-    msgBody = msgBody.toLowerCase().trim();
+    var msgBodyArray = msgBody.split(',');
+    var eventId = msgBodyArray[0];
+    eventId = eventId.trim();
+    parseInt(eventId);
+    var rsvp = msgBodyArray[1];
+    rsvp = rsvp.toLowerCase().trim();
+    var foodOption = msgBodyArray[2];
+    foodOption = foodOption.toLowerCase().trim();
 
-    db.user.find({
+    db.user_event.find({
         where: {
-            phone: msgFrom
-        }
+            eventId: eventId
+        },
+        include: [{
+            model: db.user,
+            where: {
+                phone: msgFrom
+            }
+        }]
     }).then(function (data){
         console.log(data);
-        if(msgBody === 'chicken' || msgBody === 'beef' || msgBody === 'fish'){
+        if(rsvp === 'yes'){
             db.user_event.update(
-                {attending:true},
-                {where: {UserId: data.id}}
+                {
+                    attending:true,
+                    food: foodOption
+                },
+                {where: {userId: data.id}}
             ).then(function(){
                 res.send(`
                 <Response>
@@ -52,7 +67,7 @@ exports.receiveMessage = function(req,res){
                 </Response>
                 `);
             });
-        } else if (msgBody === 'no') {
+        } else if (rsvp === 'no') {
             res.send(`
                 <Response>
                     <Message>

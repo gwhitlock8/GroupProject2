@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Add Text Guests</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+
+</head>
+<body>
+    
+    <form>
+        <input type="text" id="firstname" placeholder="First Name">
+        <input type="text" id="lastname" placeholder="Last Name">
+        <input type="text" id="phone" placeholder="Phone Number">
+        <input type="text" id="attending" placeholder="Yes/No">
+        <input type="button" class="add-row" value="Add Guest">
+    </form>
+    <table>
+        <thead>
+            <tr>
+                <th>Select</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Phone Number</th>
+                <th>Attending?</th>
+            </tr>
+        </thead>
+        <tbody class="guest-container">
+            <tr>
+                <td><input type="checkbox" name="record"></td>
+                <td>Bob</td>
+                <td>Dole</td>
+                <td>8326431415</td>
+                <td>Yes</td>
+            </tr>
+        </tbody>
+    </table>
+    <button type="button" class="send-message">Send Message</button>
+    <button type="button" class="delete-row">Delete Row</button>
+    
+    <script src="/js/text-guests.js"></script>
+</body> 
+</html>                                		
