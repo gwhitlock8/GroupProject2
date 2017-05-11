@@ -49,11 +49,14 @@ router.post("/phone/:id", (req, res) => {
 //TODO: need to flesh out and figure out how to pull correct info
 router.get("/dashboard/:id", (req, res) => {
     var id = req.params.id;
-    db.UserEvents.findOne({
+    db.user_event.findOne({
+        include: [db.user, db.events],
         where: { 
-            UserId: id
+            userId: id
         }
+        
     }).then(function(data){
+        console.log(data);
         res.render("dashboard", data);
     });
 })
