@@ -120,12 +120,33 @@ body {
     margin-bottom: 20px;
 }
 
+
+/* ------- Text -------- */
+
 h1,
 h2,
 h3,
 h4 {
     font-family: 'Bree Serif', 'Trebuchet MS', Georgia, serif;
 }
+
+h2,
+h3 {
+    border-bottom: 1px solid #ccc;
+}
+
+h2 {
+    margin-bottom: 20px;
+}
+
+h3 {
+    margin-top: 20px;
+    border-top: 3px solid #ddd;
+    padding: 10px 0;
+}
+
+
+/* ---------  welcome/splash screen -----------*/
 
 #splash {
     text-align: center;
@@ -148,6 +169,9 @@ h4 {
     border-radius: 20px;
     border: 2px solid #beaca5;
 }
+
+
+/* ----------  NAV BAR ----------------*/
 
 nav .container {
     margin-bottom: 0;
@@ -188,6 +212,24 @@ nav .logo {
     border-color: #bbb;
 }
 
+
+/* ---- Responsive Fix to keep nav bar collapsed in wide viewports ---- */
+
+@media (min-width: 768px) {
+    .navbar-header {
+        float: none;
+    }
+    .navbar-toggle {
+        display: block;
+    }
+    .navbar-collapse.collapse {
+        display: none !important;
+    }
+}
+
+
+/* --------- List Buttons (Dashboard) ---------- */
+
 .container .btn-list {
     display: block;
     width: 100%;
@@ -217,20 +259,8 @@ nav .logo {
     margin: 5px 0 0 auto;
 }
 
-h2,
-h3 {
-    border-bottom: 1px solid #ccc;
-}
 
-h2 {
-    margin-bottom: 20px;
-}
-
-h3 {
-    margin-top: 20px;
-    border-top: 3px solid #ddd;
-    padding: 10px 0;
-}
+/* ---------- nevbar profile --------- */
 
 #profile {
     padding-bottom: 10px;
@@ -257,6 +287,9 @@ h3 {
     font-size: 18px;
     margin-left: 72px;
 }
+
+
+/* -------- general purpose ------- */
 
 .half-wide {
     width: 50%;
