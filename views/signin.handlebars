@@ -25,7 +25,6 @@
     </div>
 </nav>
 
-
 <div class="container" id="splash">
     <h1>Party Sherpa</h1>
     <p class="logo"></p>
@@ -37,7 +36,6 @@
     </div>
     <div class="half-wide pull-left">
         <a class="btn btn-default btn-lg" id="btn-login" data-toggle="modal" data-target="#modal-login">Log In</a>
-
     </div>
 </div>
 
@@ -108,13 +106,13 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title">Please enter your email.</h3>
+                <h3 class="modal-title">Please enter your phone number.</h3>
             </div>
             <div class="modal-body">
                 <form id="phone" method="post" action="/phone/{{this.user_id}}">
                     <div class="form-group">
                         <label for="phone">Phone Number</label>
-                        <input type="text" name="phone" class="form-control" placeholder="+1-512-123-4567">
+                        <input type="text" name="phone" class="form-control" placeholder="+15121234567">
                     </div>
                     <input class="btn" type="submit" value="Submit" />
                 </form>

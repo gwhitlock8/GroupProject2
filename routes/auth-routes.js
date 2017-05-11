@@ -8,7 +8,7 @@ function isLoggedIn(req, res, next) {
 
         return next();
 
-    res.redirect('/signin');
+    res.redirect('/');
 
 }
 
@@ -29,6 +29,7 @@ router.get("/signin/:id", (req, res) => {
             res.render("signin", info);
         }
     });
+});
 
 router.post("/phone/:id", (req, res) => {
     var id = req.params.id;
@@ -62,9 +63,10 @@ router.get("/signin", (req, res) => {
     res.render("signin");
 });
 
+
 //removed isLoggedIn,
 // Dashboard route, protected by user logged in
-router.get("/dashboard", (req, res) => {
+router.get("/dashboard", isLoggedIn, (req, res) => {
     res.render("dashboard");
 });
 
@@ -88,12 +90,11 @@ router.post('/login', passport.authenticate('local-signin', {
     res.redirect("/dashboard/" + req.session.passport.user)
 });
 
-    // =====================================
-    // FACEBOOK ROUTES =====================
-    // =====================================
-    // route for facebook authentication and login
+// =====================================
+// FACEBOOK ROUTES =====================
+// =====================================
+// route for facebook authentication and login
 router.get('/auth/facebook', passport.authenticate('facebook', { scope: ['email'] }));
-
 
 // handle the callback after facebook has authenticated the user
 router.get('/auth/facebook/callback',
@@ -106,4 +107,4 @@ router.get('/auth/facebook/callback',
     }
 );
 
-
+module.exports = router;

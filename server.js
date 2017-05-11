@@ -18,12 +18,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.text());
 app.use(bodyParser.json({ type: "application/vnd.api+json" }));
 
-
 app.use(express.static("./public"));
-
-
-require('./routes/auth-routes.js')(app);
-require('./routes/sms-routes.js')(app);
 
 var exphbs = require('express-handlebars');
 
@@ -35,25 +30,27 @@ app.use(passport.initialize());
 
 app.use(passport.session()); // persistent login sessions
 
-    // Local signin route
+// Local signin route
 app.get("/", (req, res) => {
     res.render("signin");
 });
 
 //load passport strategies
 require('./config/passport/passport.js')(passport, db.user);
-// app.use('/', routes.authRoutes);
+
+// Load auth routes
+app.use('/', routes.authRoutes, routes.smsRoutes);
 
 app.use(methodOverride('_method'));
 
-app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+app.engine('handlebars', exphbs({ defaultLayout: 'main' }));
 app.set('view engine', 'handlebars');
 
 //require('./routes/auth-routes.js')(app, passport);
 
 // Syncing our sequelize models and then starting our express app
-db.sequelize.sync({ force: true }).then(function() {
-    app.listen(PORT, function() {
+db.sequelize.sync({ force: true }).then(function () {
+    app.listen(PORT, function () {
         console.log("App listening on PORT " + PORT);
     });
 
