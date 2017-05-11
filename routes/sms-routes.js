@@ -12,7 +12,7 @@ router.get('/api/event', function (req, res) {
 });
 
 //get all information about a specific event
-router.get('/api/event/:id', function (req, res) {
+router.get('/event/:id', function (req, res) {
     db.events.findOne({
         where: {
             id: req.params.id
@@ -23,14 +23,16 @@ router.get('/api/event/:id', function (req, res) {
 });
 
 //returns a full guest lists based on the event that is selected
-router.get('/api/guests', function (req, res) {
+
+router.get('/api/event/guests', function (req, res) {*-
     var query = {};
     if (req.query.event_id) {
         query.eventId = req.query.event_id;
     }
     db.user_event.findAll({
         where: {
-            query
+            query,
+            host: false
         },
         include: [{
             model: db.user,

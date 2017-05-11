@@ -25,6 +25,16 @@ module.exports = function(sequelize, Sequelize) {
             allowNull: false,
             defaultValue: ""
         },
+        email : {
+            type: Sequelize.STRING,
+            validate: {
+                isEmail: true
+            }
+        },
+        password : {
+            type: Sequelize.STRING,
+            allowNull: false
+        },
         createdAt: {
             type: 'TIMESTAMP',
             defaultValue: sequelize.literal('CURRENT_TIMESTAMP'),
