@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Add Guests</title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+        
+    <link rel="stylesheet" href="../public/css/style.css" type="text/css" />
+    <style type="text/css">
+    form{
+        margin: 20px 0;
+    }
+    form input, button{
+        padding: 5px;
+    }
+    table{
+        width: 100%;
+        margin-bottom: 20px;
+		border-collapse: collapse;
+    }
+    table, th, td{
+        border: 1px solid #cdcdcd;
+    }
+    table th, table td{
+        padding: 10px;
+        text-align: left;
+    }
+</style>
+</head>
+<body>
+    
+    <form>
+        <input type="text" id="firstname" placeholder="First Name">
+        <input type="text" id="lastname" placeholder="Last Name">
+        <input type="text" id="phone" placeholder="Phone Number">
+        <input type="button" class="add-row" value="Add Guest">
+    </form>
+    <table>
+        <thead>
+            <tr>
+                <th>Select</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Phone Number</th>
+                <th>Attending?</th>
+            </tr>
+        </thead>
+        <tbody class="guest-container">
+            <tr>
+                <td><input type="checkbox" name="record"></td>
+                <td id="first_name">Bob</td>
+                <td id="last_name">Dole</td>
+                <td id="guest_phone">8326431415</td>
+                <td id="attending">Yes</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="half-wide pull-left">
+        <a class="btn btn-default btn-lg" id="btn-send" data-toggle="modal" data-target="#modal-send">Send Message to Selected Guests</a>
+    </div>
+    <button type="button" class="delete-row">Delete Row</button>
+
+ <!------------- MODAL ---------------------------->
+     <div id="modal-send" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Send Text Message to Selected Guests</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="send" name="send" method="get" action="/send-message">
+                        <table>
+                            <tr>
+                                <th>First Name</th>
+                                <th>Last Name</th>
+                                <th>Phone</th>
+                            </tr>
+                            <tbody id="guestTable">
+                            </tbody>
+                        </table>
+                        <!--<div class="form-group">
+                            <label for="email">User ID</label>
+                            <input type="email" name="email" class="form-control" id="userid" placeholder="you@domain.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" name="password" class="form-control" id="password" placeholder="Password">
+                        </div>-->
+                        <input type="submit" class="btn btn-default submit">
+                    </form>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="../public/js/textguests.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+    crossorigin="anonymous"></script>
+    <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+</body> 
+</html>                                		

@@ -15,8 +15,8 @@ exports.sendMessage = function(res,req) {
     for(i=0;i<res.length; i++){
             client.messages.create({
             from: twilioPhone,
-            to: res[i].User.phone,
-            body: "Twilio SMS"
+            to: res[i].user.phone,
+            body: ""
         }, function(err,message){
             if(err) {
                 console.error(err.message);

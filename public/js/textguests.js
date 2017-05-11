@@ -26,52 +26,48 @@ $(document).ready(function(){
     }
 
     //adds another guest to the table and updates the database
-    function addRow() {
-        $(".add-row").click(function(){
+    $(".add-row").click(function(){
         var guestFirstName = $("#firstname").val();
         var guestLastName = $("#lastname").val();
         var phone = $("#phone").val();
-        var attending = $("#attening").val();
         var markup = "<tr><td><input type='checkbox' name='record'></td><td>" + guestFirstName + "</td><td>" + guestLastName + "</td><td>" + phone + "</td></tr>";
         $("table tbody").append(markup);
-        });
-    };
+    });
 
 
 
     //selects the guests that we want to send a message
     //then pulls up a modal to construct a message to the selected guests
-    function sendMessage() {
-        $(".send-message").click(function(){
-            $("table tbody").find('input[name="record"]').each(function(){
-                if($(this).is(":checked")){
-                    $(this)
-                }
-            });
+    $("#btn-send").click(function(){
+        $("table tbody").find('input[name="record"]').each(function(){
+            if($(this).is(":checked")){
+                var markup = $(this).parents("tr");
+                
+                $("#guestTable").append(markup);
+            }
         });
-    };
+    });
+
 
 
     
     // Find and remove selected table rows and removes the guest from user-event table
-    function deleteRow() {
-        $(".delete-row").click(function(id){
-            $("table tbody").find('input[name="record"]').each(function(){
-                if($(this).is(":checked")){
-                    var listItemData = $(this).parents("tr").data('guest');
-                    var guestId = listItemData.id;
-                    $.ajax({
-                        method: "DELETE",
-                        url: "api/event/" + id + "/" + guestId
-                    })
-                    .done(function () {
-                        getGuests();
-                    });
-                }
-            });
+    $(".delete-row").click(function(id){
+        $("table tbody").find('input[name="record"]').each(function(){
+            if($(this).is(":checked")){
+                $(this).parents("tr").remove();
+                $.ajax({
+                    method: "DELETE",
+                    url: "api/event/" + id + "/" + guestId
+                })
+                .done(function () {
+                    getGuests();
+                });
+            }
         });
+    });
     
-    };
+
 
     //builds the table of existings guests in the UI
     function initializeRows() {
@@ -109,4 +105,7 @@ $(document).ready(function(){
         
         return guestRow;
     }
+
+    getGuests();
+
 });
