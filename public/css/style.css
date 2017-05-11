@@ -120,12 +120,24 @@ body {
     margin-bottom: 20px;
 }
 
+h1,
+h2,
+h3,
+h4 {
+    font-family: 'Bree Serif', 'Trebuchet MS', Georgia, serif;
+}
+
 #splash {
     text-align: center;
 }
 
 #splash h1 {
+    font-family: 'Oleo Script Swash Caps', cursive;
     text-align: center;
+    font-size: 70px;
+    letter-spacing: -3px;
+    text-shadow: -2px 2px 0 #5f9a56;
+    color: #acd69a;
 }
 
 #splash .logo {
@@ -158,9 +170,13 @@ nav .logo {
     border: 1px solid #beaca5;
 }
 
-.navbar-brand {
+.navbar-inverse .navbar-brand {
     padding: 17px 15px;
-    font-size: 20px;
+    font-family: 'Oleo Script Swash Caps', cursive;
+    text-align: center;
+    letter-spacing: -1px;
+    color: #acd69a;
+    font-size: 24px;
 }
 
 .navbar-collapse {
@@ -170,10 +186,6 @@ nav .logo {
 
 .navbar-inverse {
     border-color: #bbb;
-}
-
-.navbar-inverse .navbar-brand {
-    color: #fff8d2;
 }
 
 .container .btn-list {
