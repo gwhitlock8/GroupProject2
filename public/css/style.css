@@ -111,6 +111,10 @@
 
 /* --------------------------------------- emily's stuff here --- */
 
+body {
+    background: #fff url('../images/bg.png') 0 0 repeat;
+}
+
 .container {
     margin-top: 60px;
     margin-bottom: 20px;
@@ -127,8 +131,10 @@
 #splash .logo {
     width: 300px;
     height: 300px;
-    background-color: #ccc;
+    background: #fff8d2 url('../images/alpacalogo.png') 0 0 no-repeat;
     margin: 40px auto;
+    border-radius: 20px;
+    border: 2px solid #beaca5;
 }
 
 nav .container {
@@ -143,8 +149,13 @@ nav .logo {
     width: 40px;
     height: 40px;
     margin: 6px;
-    background-color: #ccc;
     float: left;
+    background-color: #fff8d2;
+    background-image: url('../images/alpacalogo.png');
+    background-repeat: no-repeat;
+    background-size: 40px;
+    border-radius: 4px;
+    border: 1px solid #beaca5;
 }
 
 .navbar-brand {
@@ -159,6 +170,10 @@ nav .logo {
 
 .navbar-inverse {
     border-color: #bbb;
+}
+
+.navbar-inverse .navbar-brand {
+    color: #fff8d2;
 }
 
 .container .btn-list {
