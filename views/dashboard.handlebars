@@ -44,7 +44,7 @@
         <a class="btn btn-list" id="456">Manage 10th Anniversary<i class="fa fa-chevron-right" aria-hidden="true"></i></a>
         <hr />
         <h2>Guest</h2>
-        <a class="btn btn-list" id="btn-789">Gavin &amp; Christine's Wedding<i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+        <a class="btn btn-list event-name" id="btn-789">Gavin &amp; Christine's Wedding<i class="fa fa-chevron-right" aria-hidden="true"></i></a>
     </div>
 
     <div class="container" id="event-details">
@@ -99,7 +99,7 @@
 
     <!-- new event -->
     <div class="container" id="event-create">
-     <!--
+        <!--
      - select guests (how)? (text fields: fname/lname/phone)
      -->
         <h2>Create a New Event</h2>
@@ -125,10 +125,12 @@
                 <label for="new-event-dress">Dress Code</label>
                 <input type="text" class="form-control" id="new-event-dress" placeholder="Optional">
             </div>
-            <div class="checkbox">
-                <span><strong>Do you need your guests to select a meal ahead of time?</strong></span>
-                <label><input type="checkbox"> Meal option</label>
-                <p>[ create text boxes in form of a list adding one field when user clicks a + icon]</p>
+            <div class="checkbox checkbox-default">
+                <p><strong>Do you need your guests to select a meal ahead of time?</strong></p>
+                <label><input id="meal-start" type="checkbox"> Meal option</label>
+                <div id="meal-choices">
+                    <a id="add-meal" class="btn btn-default add-one"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add another</a>
+                </div>
             </div>
             <div class="form-group">
                 <label for="new-event-notes">Any extra notes?</label>
@@ -136,12 +138,11 @@
             </div>
             <div class="form-group">
                 <label for="new-event-guests">Guest List</label>
-                <p><a class="btn btn-default"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add a Guest</a></p>
-                <p>[Each Guest will show here after host fills their info into modal]</p>
-            </div> 
-            <hr />                       
+                <p><a id="add-guest" data-toggle="modal" data-target="#modal-event-add-guest" class="btn btn-default"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add a Guest</a></p>
+            </div>
+            <hr />
             <div class="half-wide pull-left">
-                <button class="btn btn-default btn-lg btn-block" type="submit">Save</button>
+                <button class="btn btn-primary btn-lg btn-block" type="submit">Save</button>
             </div>
             <div class="half-wide pull-right">
                 <button class="btn btn-default btn-lg btn-block">Cancel</button>
@@ -169,6 +170,45 @@
                 <div class="modal-footer">
                     <button class="btn btn-danger btn-block" data-dismiss="modal">Yes, Remove me from the Event and Delete it</button>
                 </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal-event-add-guest" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Add a Guest</h4>
+                </div>
+                <form>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="add-guest-fname">First Name</label>
+                            <input type="text" class="form-control" id="add-guest-fname" placeholder="Bob">
+                        </div>
+                        <div class="form-group">
+                            <label for="add-guest-lname">Last Name</label>
+                            <input type="text" class="form-control" id="add-guest-lname" placeholder="Dole">
+                        </div>
+                        <div class="form-group">
+                            <label for="add-guest-phone">Phone Number</label>
+                            <input type="tel" class="form-control" id="add-guest-phone" placeholder="">
+                        </div>
+                        <div class="form-group">
+                            <label for="add-guest-phone">Email</label>
+                            <input type="email" class="form-control" id="add-guest-email" placeholder="">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="half-wide pull-left">
+                            <button class="btn btn-primary btn-lg btn-block" data-dismiss="modal">Add Guest</button>
+                        </div>
+                        <div class="half-wide pull-right">
+                            <button class="btn btn-default btn-lg btn-block" data-dismiss="modal">Cancel</button>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

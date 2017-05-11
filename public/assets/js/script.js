@@ -21,6 +21,8 @@ $(document).ready(function() {
     $(".alert").hide();
     $("#event-details").hide();
     $("#event-create").hide();
+    $("#meal-choices").hide();
+    var newInput = '<div class="input-group"><input type="text" class="form-control new-input"><span class="input-group-addon input-group-delete"><i class="fa fa-times-circle" aria-hidden="true"></i></span></div>'
 
     $('#toggle-rsvp').bootstrapToggle({
         on: 'Enabled',
@@ -34,6 +36,8 @@ $(document).ready(function() {
         //check if both passwords match, if not: return "Error: Passwords do not match"
         //check if any field is empty, if yes: return "Error: Some information is missing"
     }
+
+
     /* -------------------------------------------
     ---------------    NAVIGATION    -----------*/
 
@@ -52,8 +56,8 @@ $(document).ready(function() {
         $("#event-create").show();
     }
 
-    /* ------------   DATE PICKER ----------- */
-    $('#container-new-event-datetime').datetimepicker();
+    /* -----------   DATE PICKER ---------- */
+    $("#container-new-event-datetime").datetimepicker();
 
     /* ----------------------------------------
     ------------  CLICK EVENTS  ------------*/
@@ -83,5 +87,27 @@ $(document).ready(function() {
 
     $("#btn-event-create").on("click", function() {
         createEvent();
+    });
+
+    $("#event-create #meal-start").change(function() {
+        if (this.checked) {
+            $("#meal-choices").prepend(newInput);
+            $("#meal-choices").prepend(newInput);
+            $("#meal-choices").show();
+        } else {
+            $("#meal-choices input").val('');
+            $("#meal-choices").hide();
+            $("#meal-choices .new-input").parent().remove();
+        }
+    });
+
+
+    /* -----------  RE-USEABLE CLICK EVENTS ---------- */
+    $(".add-one").on("click", function() {
+        $(".add-one").parent().prepend(newInput);
+    });
+
+    $(document).on("click", ".input-group-delete", function() {
+        $(this).parent().remove();
     });
 });
