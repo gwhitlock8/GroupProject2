@@ -39,7 +39,8 @@ app.get("/", (req, res) => {
 require('./config/passport/passport.js')(passport, db.user);
 
 // Load auth routes
-app.use('/', routes.authRoutes, routes.smsRoutes);
+app.use(routes.authRoutes);
+app.use(routes.smsRoutes);
 
 app.use(methodOverride('_method'));
 
