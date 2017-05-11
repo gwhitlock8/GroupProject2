@@ -87,25 +87,25 @@
 <!-- new event -->
 <div class="container" id="event-create">
     <h2>Create a New Event</h2>
-    <form>
+    <form id="new-event" name="event" method="post" action="/event">
         <div class="form-group">
-            <label for="new-event-name">Event Name</label>
-            <input type="text" class="form-control" id="new-event-name" placeholder="Joe's Birthday">
+            <label for="event_name">Event Name</label>
+            <input type="text" class="form-control" id="event_name" name="event_name" placeholder="Joe's Birthday">
         </div>
         <div class="form-group">
-            <label for="new-event-datetime">Date &amp; Time</label>
+            <label for="event_date">Date &amp; Time</label>
             <div class="input-group date" id="container-new-event-datetime">
-                <input type='text' class="form-control" id="new-event-datetime" />
+                <input type='text' class="form-control" id="event_date" name="event_date" />
                 <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                 </span>
             </div>
         </div>
         <div class="form-group">
-            <label for="new-event-location">Location</label>
-            <input type="text" class="form-control" id="new-event-location" placeholder="">
+            <label for="location">Location</label>
+            <input type="text" class="form-control" id="location" name="location" placeholder="">
         </div>
-        <div class="form-group">
+        {{!--<div class="form-group">
             <label for="new-event-dress">Dress Code</label>
             <input type="text" class="form-control" id="new-event-dress" placeholder="Optional">
         </div>
@@ -124,7 +124,7 @@
             <label for="new-event-guests">Guest List</label>
             <p><a id="add-guest" data-toggle="modal" data-target="#modal-event-add-guest" class="btn btn-default"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add a Guest</a></p>
         </div>
-        <hr />
+        <hr />--}}
         <div class="half-wide pull-left">
             <button class="btn btn-primary btn-lg btn-block" type="submit">Save</button>
         </div>
