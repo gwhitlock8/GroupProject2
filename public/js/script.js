@@ -18,6 +18,7 @@ $(function() {
 
 $(document).ready(function() {
     console.log("front-end js loaded");
+        $('#phoneModal').modal('show');
     $(".alert").hide();
     $("#event-details").hide();
     $("#event-create").hide();

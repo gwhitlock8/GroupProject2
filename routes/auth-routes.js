@@ -1,6 +1,6 @@
 var db = require("../models");
-var passport = require('passport')
-var router = require('express'). Router();
+var passport = require('passport');
+var router = require('express').Router();
 
 function isLoggedIn(req, res, next) {
 
@@ -8,29 +8,55 @@ function isLoggedIn(req, res, next) {
 
         return next();
 
-    res.redirect('/signin');
+    res.redirect('/');
 
 }
 
 router.get("/signin/:id", (req, res) => {
     var id = req.params.id;
-    console.log(db.user);
     db.user.findOne({
         where: {
             id: id
         }
-    }).then(function(data) {
-        console.log(data);
+    }).then(function (data) {
         if (data.phone) {
-            res.redirect("/dashboard");
+            res.redirect("/dashboard/"+id);
         } else {
-            res.json({
-                phone: false,
+            var info = {
+                noPhone: true,
                 user_id: id
-            });
+            }
+            res.render("signin", info);
         }
     });
 });
+
+router.post("/phone/:id", (req, res) => {
+    var id = req.params.id;
+    db.user.update(
+        {
+            phone: req.body.phone
+        }, {
+            where: {
+                id: id
+            }
+        }).then(function (data) {
+            res.redirect("/dashboard/"+id);
+        });
+});
+
+
+//TODO: need to flesh out and figure out how to pull correct info
+router.get("/dashboard/:id", (req, res) => {
+    var id = req.params.id;
+    db.UserEvents.findOne({
+        where: { 
+            UserId: id
+        }
+    }).then(function(data){
+        res.render("dashboard", data);
+    });
+})
 
 // Local signin route
 router.get("/signin", (req, res) => {
@@ -40,7 +66,7 @@ router.get("/signin", (req, res) => {
 
 //removed isLoggedIn,
 // Dashboard route, protected by user logged in
-router.get("/dashboard", (req, res) => {
+router.get("/dashboard", isLoggedIn, (req, res) => {
     res.render("dashboard");
 });
 
@@ -52,16 +78,17 @@ router.get("/logout", (req, res) => {
 });
 
 router.post('/signup', passport.authenticate('local-signup', {
-    failureRedirect: '/signup'
-}), function(req, res) {
+    failureRedirect: '/'
+}), function (req, res) {
     console.log("This is user info: " + req.session.passport.user);
     res.redirect("/signin/" + req.session.passport.user);
 });
 
-router.post('/signin', passport.authenticate('local-signin', {
-    successRedirect: '/dashboard',
-    failureRedirect: '/signin'
-}));
+router.post('/login', passport.authenticate('local-signin', {
+    failureRedirect: '/'
+}), function(req, res) {
+    res.redirect("/dashboard/" + req.session.passport.user)
+});
 
 // =====================================
 // FACEBOOK ROUTES =====================
@@ -74,9 +101,9 @@ router.get('/auth/facebook/callback',
     passport.authenticate('facebook', {
         failureRedirect: '/'
     }),
-    function(req, res) {
+    function (req, res) {
         console.log("facebook info: " + req.session.passport.user);
-        res.redirect("/phonecheck/" + req.session.passport.user);
+        res.redirect("/signin/" + req.session.passport.user);
     }
 );
 
