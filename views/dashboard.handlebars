@@ -87,23 +87,23 @@
 <!-- new event -->
 <div class="container" id="event-create">
     <h2>Create a New Event</h2>
-    <form>
+    <form id="new-event" name="new-event" method="post" action="/api/events">
         <div class="form-group">
             <label for="new-event-name">Event Name</label>
             <input type="text" class="form-control" id="new-event-name" placeholder="Joe's Birthday">
         </div>
         <div class="form-group">
-            <label for="new-event-datetime">Date &amp; Time</label>
+            <label for="date">Date &amp; Time</label>
             <div class="input-group date" id="container-new-event-datetime">
-                <input type='text' class="form-control" id="new-event-datetime" />
+                <input type='text' class="form-control" id="date" />
                 <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                 </span>
             </div>
         </div>
         <div class="form-group">
-            <label for="new-event-location">Location</label>
-            <input type="text" class="form-control" id="new-event-location" placeholder="">
+            <label for="location">Location</label>
+            <input type="text" class="form-control" id="location" placeholder="">
         </div>
         <div class="form-group">
             <label for="new-event-dress">Dress Code</label>

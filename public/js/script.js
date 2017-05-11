@@ -58,7 +58,9 @@ $(document).ready(function() {
     }
 
     /* -----------   DATE PICKER ---------- */
-    $("#container-new-event-datetime").datetimepicker();
+    var dateFormat = $("#container-new-event-datetime").datetimepicker("option","dateFormat");
+    $("#container-new-event-datetime").datetimepicker("yyyy-mm-dd hh:mm:ss");
+
 
     /* ----------------------------------------
     ------------  CLICK EVENTS  ------------*/

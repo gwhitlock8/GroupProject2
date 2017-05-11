@@ -84,15 +84,15 @@
                 <h3 class="modal-title">Please enter your phone number.</h3>
             </div>
             <div class="modal-body">
-                <form id="phone" method="post" action="/phone/{{this.user_id}}">
+                <form id="phone" name="phone" method="post" action="/phone/1">
                     <div class="form-group">
                         <label for="phone">Phone Number</label>
                         <input type="text" name="phone" class="form-control" placeholder="+15121234567">
                     </div>
+                    <div class="modal-footer">
+                        <input class="btn" type="submit" value="Submit" />
+                    </div>
                 </form>
-            </div>
-            <div class="modal-footer">
-                <input class="btn" type="submit" value="Submit" />
             </div>
         </div>
     </div>
