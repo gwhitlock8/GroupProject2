@@ -27,7 +27,7 @@ module.exports = function(sequelize, Sequelize) {
     },{
         classMethods: {
             associate: function(models) {
-                UserEvent.belongsTo(models.User);
+                UserEvent.belongsTo(models.user);
             }
         }  
       
