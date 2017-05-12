@@ -18,7 +18,7 @@ $(function() {
 
 $(document).ready(function() {
     console.log("front-end js loaded");
-        $('#phoneModal').modal('show');
+    $('#phoneModal').modal('show');
     $(".alert").hide();
     $("#event-details").hide();
     $("#event-create").hide();
@@ -37,7 +37,6 @@ $(document).ready(function() {
         //check if both passwords match, if not: return "Error: Passwords do not match"
         //check if any field is empty, if yes: return "Error: Some information is missing"
     }
-
 
     /* -------------------------------------------
     ---------------    NAVIGATION    -----------*/
@@ -104,12 +103,13 @@ $(document).ready(function() {
         }
     });
 
-
     /* -----------  RE-USEABLE CLICK EVENTS ---------- */
+
     $(".add-one").on("click", function() {
         $(".add-one").parent().prepend(newInput);
     });
 
+    //the document.on is needed for manipulated elements created on the fly
     $(document).on("click", ".input-group-delete", function() {
         $(this).parent().remove();
     });
