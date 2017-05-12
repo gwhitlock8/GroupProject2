@@ -8,7 +8,6 @@ router.get('/event', function (req, res) {
             res.json(data);
         });
 });
-
 //get all information about a specific event
 router.get('/event/:id', function (req, res) {
     db.events.findOne({
@@ -19,7 +18,6 @@ router.get('/event/:id', function (req, res) {
         res.json(data);
     });
 });
-
 //finds a single guest that is attending a specific event
 router.get('/api/event/:eventid/:userid', function (req, res) {
     db.user_event.findOne({
@@ -35,7 +33,6 @@ router.get('/api/event/:eventid/:userid', function (req, res) {
         res.json(data);
     });
 });
-
 //gets a single user from an event and deletes that user from the guest list
 router.delete('/api/event/:eventid/:userid', function (req, res) {
     db.user_event.destroy({
@@ -47,7 +44,6 @@ router.delete('/api/event/:eventid/:userid', function (req, res) {
         res.json(data);
     });
 });
-
 //gets a single user from an event
 router.get('/api/event/:id', function (req, res) {
     db.user_event.findAll({
@@ -58,7 +54,6 @@ router.get('/api/event/:id', function (req, res) {
         res.json(data);
     });
 });
-
 router.post("/event", function (req, res) {
     //The information for the form is taken and used to create an event in the events table
     db.events.create({
@@ -83,13 +78,14 @@ router.post("/event", function (req, res) {
                 include: [db.user, db.events]
             }).then(function (singleUsersEvents) {
                 //this doesnt do anything at the moment, the template needs to be written
-                console.log(singleUsersEvents[0].dataValues.user);
-                res.render("dashboard", singleUsersEvents);
+                var userEvents = {
+                    events: singleUsersEvents
+                }
+                res.render("dashboard", userEvents);
             });
         });
     });
 });
-
 router.post("/addGuests/:eventId", function (req, res) {
     //creates the guest as a user
     db.user.create({

@@ -70,7 +70,7 @@ router.get("/dashboard/:id", isLoggedIn, (req, res) => {
 //removed isLoggedIn,
 // Dashboard route, protected by user logged in
 router.get("/dashboard", isLoggedIn, (req, res) => {
-    res.render("dashboard");
+    res.render("dashboard/" + req.session.passport.user);
 });
 
 
