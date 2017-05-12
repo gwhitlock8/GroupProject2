@@ -10,28 +10,29 @@ Heroku <https://quiet-forest-57643.herokuapp.com//>
 ## Project Members: 
 ### Stephen Pino - <https://github.com/StephenPino/>
 ### Gavin Whitlock - <https://github.com/gwhitlock8/>
-### Emily Pulskamp - 
-### Paul Viola - 
+### Emily Pulskamp - <https://github.com/emkamp/>
+### Paul Viola - <https://github.com/Paulv2016/>
 
 ## Task Breakdowns:
 ### Stephen Pino: 
-* Back-end Design (html, css)
-* Javascript (event listeners for modals and ready button)
-* Bug Testing
-* Game/Feature/Design Ideas and Suggestions
+* Back-end Design (node.js, sequelize, MySQL, Express)
+* User authentication (passport-local & passport-facebook)
+* RESTful API routing (user authentication)
+* Database interaction (MySQL & Sequelize)
 ### Gavin Whitlock
-* Back-end Design (html, css, animations, images)
-* Mobile Design (sadly scrapped due to time)
-* Bug Testing
-* Game/Feature/Design Ideas and Suggestions
+* Back-end Design (node.js, sequelize, MySQL, Express)
+* Mobile text-message functionality (twilio)
+* RESTful API routing (sms-routing, user-event relational routing)
+* Database interaction (MySQL & Sequelize)
 ### Emily Pulskamp
-* Front-end Design (html, css, javascript)
-* Bug Testing
+* Front-end Design (html, css, javascript, jQuery)
+* Event-click handlers / modals
 * Game/Feature/Design Ideas and Suggestions
 ### Paul Viola
-* Back-end Design (main game code)
-* Bug Testing
-* Game/Feature/Design Ideas and Suggestions
+* Back-end Design (node.js, sequelize, MySQL, Express)
+* Sequelize Model construction (event, user-events)
+* RESTful API routing (event-routing, user-event relational routing)
+* Database interaction (MySQL & Sequelize)
 
 ## Technologies/Libraries Used:
 * Passport.js (passport-local and passport-facebook):  <https://github.com/jaredhanson/passport-github/>
