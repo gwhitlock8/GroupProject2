@@ -50,7 +50,7 @@ router.post("/guestlist/:id", function (req, res) {
             host: false
         }).then(function (newUserEvent) {
             res.redirect("/guestlist/" + eventId);
-        })
-    })
+        });
+    });
 });
 module.exports = router;

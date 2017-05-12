@@ -76,7 +76,7 @@ router.post("/guestlist", function (req, res) {
         }).then(function (newUserEvent) {
                 //redirect for new guest page
                 //res.redirect("guestlist/"+newUserEvent.eventId);
-                res.redirect("/dashboard/"+ req.session.passport.user);
+                res.redirect("/guestlist/"+ newUserEvent.eventId);
             });
         });
     });
