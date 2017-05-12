@@ -4,7 +4,7 @@ module.exports = {
     'facebookAuth': {
         'clientID': 1558493570849816, // your App ID
         'clientSecret': "9d1883aef254f2104877ae32598854fb", // your App Secret
-        'callbackURL': 'https://quiet-forest-57643.herokuapp.com/auth/facebook/callback'
+        'callbackURL': 'http://localhost:8080/auth/facebook/callback'
     },
 
     'twitterAuth': {
