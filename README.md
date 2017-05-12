@@ -1,5 +1,4 @@
-# Class: UT0109FSF UT Coding Bootcamp
-# Project 2
+# Class: UT0109FSF UT Coding Bootcamp Project 2
 
 # Project Name: 
 ## Party Sherpa (Event Planning App)
