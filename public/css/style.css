@@ -121,10 +121,6 @@ body {
     margin-bottom: 20px;
 }
 
-#splash {
-    margin-top: 10px;
-}
-
 
 /* ------- Text -------- */
 
@@ -156,6 +152,7 @@ h3 {
 
 #splash {
     text-align: center;
+    margin-top: 10px;
 }
 
 #splash h1 {
@@ -264,11 +261,14 @@ nav .logo {
 #profile {
     padding-bottom: 10px;
     border-bottom: 1px solid #ccc;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 #profile i {
-    font-size: 64px;
+    font-size: 50px;
+    height: 50px;
+    width: 50px;
+    text-align: center;
 }
 
 #profile h3 {
@@ -286,6 +286,18 @@ nav .logo {
 #profile-phone {
     font-size: 18px;
     margin-left: 72px;
+}
+
+#user-picture {
+    width: 50px;
+    height: 50px;
+    float: left;
+    margin-right: 15px;
+}
+
+#user-picture img {
+    border-radius: 4px;
+    border: 1px solid #beaca5;
 }
 
 
@@ -306,6 +318,18 @@ nav .logo {
 
 hr {
     border-top: 1px dashed #acd69a;
+}
+
+
+/* ------------  new events --------------*/
+
+#guest-list tr {
+    border-bottom: 1px solid #ccc;
+}
+
+#guest-list tr td {
+    padding: 3px 5px;
+    vertical-align: middle;
 }
 
 

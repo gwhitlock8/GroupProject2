@@ -91,6 +91,8 @@ $(document).ready(function() {
         createEvent();
     });
 
+    /* -- Meal Selection -- */
+
     $("#event-create #meal-start").change(function() {
         if (this.checked) {
             $("#meal-choices").prepend(newInput);
@@ -103,6 +105,7 @@ $(document).ready(function() {
         }
     });
 
+
     /* -----------  RE-USEABLE CLICK EVENTS ---------- */
 
     $(".add-one").on("click", function() {
@@ -113,5 +116,5 @@ $(document).ready(function() {
     $(document).on("click", ".input-group-delete", function() {
         $(this).parent().remove();
     });
-    
+
 });

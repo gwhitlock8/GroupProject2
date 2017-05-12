@@ -88,36 +88,32 @@ router.post("/event", function(req, res) {
             });
         });
     });
-}); <<
-<< << < HEAD
+});
 
-router.post("/addGuests/:eventId", function(req, res) { ===
-            === =
-            router.post("/addGuests/:eventId", function(req, res) { >>>
-                >>> > 4 b14534853050eaae0d9563300e690ba5babdfc1
-                //creates the guest as a user
-                db.user.create({
-                    email: req.body.email,
-                    phone: req.body.phone,
-                    firstname: req.body.firstname,
-                    lastname: req.body.lastname
-                }).then(function(newUser) {
-                    //uses the newUser to create a user_event linking the tables
-                    db.user_event.create({
-                        userId: newUser.id,
-                        eventId: req.params.eventId,
-                        host: false
-                    }).then(function(newUserEvent) {
-                        //this final database collects all the user events associated with a particular user and renders dashboard with the information
-                        db.user_event.findAll({
-                            where: { userId: req.session.passport.user },
-                            include: [db.user, db.events]
-                        }).then(function(singleUsersEvents) {
-                            //this doesnt do anything at the moment, the template needs to be written
-                            res.render("dashboard", singleUsersEvents);
-                        });
-                    });
-                });
+router.post("/addGuests/:eventId", function(req, res) {
+    //creates the guest as a user
+    db.user.create({
+        email: req.body.email,
+        phone: req.body.phone,
+        firstname: req.body.firstname,
+        lastname: req.body.lastname
+    }).then(function(newUser) {
+        //uses the newUser to create a user_event linking the tables
+        db.user_event.create({
+            userId: newUser.id,
+            eventId: req.params.eventId,
+            host: false
+        }).then(function(newUserEvent) {
+            //this final database collects all the user events associated with a particular user and renders dashboard with the information
+            db.user_event.findAll({
+                where: { userId: req.session.passport.user },
+                include: [db.user, db.events]
+            }).then(function(singleUsersEvents) {
+                //this doesnt do anything at the moment, the template needs to be written
+                res.render("dashboard", singleUsersEvents);
             });
+        });
+    });
+});
 
-            module.exports = router;
+module.exports = router;

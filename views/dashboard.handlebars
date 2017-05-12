@@ -13,9 +13,11 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <div id="profile">
-                <i class="fa fa-user pull-left" aria-hidden="true"></i>
-                <h3>Bob Hope</h3>
-                <p>Logged in with Facebook</p>
+                <div id="user-picture">
+                    <i class="fa fa-user pull-left" aria-hidden="true"></i>
+                </div>
+                <h3></h3>
+                <p></p>
             </div>
             <p class="phone"><i class="fa fa-phone" aria-hidden="true"></i> <span></span> <i class="fa fa-pencil" aria-hidden="true"></i></p>
             <p class="email"><i class="fa fa-envelope" aria-hidden="true"></i> <span></span> <i class="fa fa-pencil" aria-hidden="true"></i></p>
@@ -28,36 +30,24 @@
 
 <div class="container" id="user-menu">
     <h2>Host</h2>
-    <a class="btn btn-default btn-list" id="btn-event-create">Create New Event<i class="fa fa-chevron-right" aria-hidden="true"></i></a>
-    <a class="btn btn-default btn-list" id="456">Manage 10th Anniversary<i class="fa fa-chevron-right" aria-hidden="true"></i></a>
-
+    <a class="btn btn-default btn-list" id="btn-event-create">Create New Event<i class="fa fa-chevron-right" aria-hidden="true"></i></a>    
     {{#each events}} {{#if this.host}}
-        <!-- if its in user_events use this.property
+    <!-- if its in user_events use this.property
             if its in users or events its this.dataValues.FOREIGNTABLE.column-->
-        <table>
-        <thead>
-            <tr>
-                <th>Event Name</th>
-                <th>Event Date</th>
-                <th>Location</th>
-            </tr>
-        </thead>
-        <tbody class="events-container">
-                <tr>
-                    <td>{{this.dataValues.event.event_name}}</td>
-                    <td>{{this.dataValues.event.event_date}}</td>
-                    <td>{{this.dataValues.event.location}}</td>
-                    <td><a class="btn" href="/guestlists/{{this.eventId}}">Add a guest</a></td>
-                </tr>         
-        </tbody>
-        </table>
-    {{/if}}{{/each}}
+    <a class="btn btn-default btn-list" href="{{this.dataValues.event.eventId}}">Manage {{this.dataValues.event.event_name}}<i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+    {{/if}}{{/each}} 
+
+    {{#unless this.host}}
     <h2>Guest</h2>
-    <a class="btn btn-default btn-list event-name" id="btn-789">Gavin &amp; Christine's Wedding<i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+    {{#each events}}
+    <a class="btn btn-default btn-list event-name" href="{{this.dataValues.event.eventId}}" id="btn-789">{{this.dataValues.event.event_name}}<i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+    {{/each}}
+    {{/unless}}
+
 </div>
 
 <div class="container" id="event-details">
-    <h2 class="event-name">Gavin &amp; Christine's Wedding</h2>
+    <h2 class="event-name">{{this.dataValues.event.event_name}}</h2>
     <div id="event-rsvp">
         <p>RSVP Status
             <input id="toggle-rsvp" name="rsvp" type="checkbox" checked data-toggle="toggle" data-width="120" data-height="34" data-on="Attending"
@@ -109,7 +99,7 @@
 <!-- new event -->
 <div class="container" id="event-create">
     <h2>Create a New Event</h2>
-    <form id="new-event" name="event" method="post" action="/event">
+    <form id="new-event" name="event" method="post" action="/guestlist">
         <div class="form-group">
             <label for="event_name">Event Name</label>
             <input type="text" class="form-control" id="event_name" name="event_name" placeholder="Joe's Birthday">
@@ -127,6 +117,7 @@
             <label for="location">Location</label>
             <input type="text" class="form-control" id="location" name="location" placeholder="">
         </div>
+        <!-- 
         <div class="form-group">
             <label for="new-event-dress">Dress Code</label>
             <input type="text" class="form-control" id="new-event-dress" placeholder="Optional">
@@ -142,16 +133,13 @@
             <label for="new-event-notes">Any extra notes?</label>
             <input type="textarea" class="form-control" id="new-event-notes" placeholder="Directions, passcodes, parking information, etc.">
         </div>
-        <div class="form-group">
-            <label for="new-event-guests">Guest List</label>
-            <p><a id="add-guest" data-toggle="modal" data-target="#modal-event-add-guest" class="btn btn-default"><i class="fa fa-plus-circle" aria-hidden="true"></i> Add a Guest</a></p>
-        </div>
+        -->
         <hr />
         <div class="half-wide pull-left">
-            <button class="btn btn-primary btn-lg btn-block" type="submit">Save</button>
+            <button class="btn btn-default btn-lg btn-block">Cancel</button>
         </div>
         <div class="half-wide pull-right">
-            <button "btn btn-default btn-lg btn-block">Cancel</button>
+            <button class="btn btn-primary btn-lg btn-block submit" type="submit">Continue to Guest List &nbsp; &nbsp;<i class="fa fa-chevron-right" aria-hidden="true"></i></button>
         </div>
     </form>
 </div>
@@ -207,7 +195,7 @@
                 </div>
                 <div class="modal-footer">
                     <div class="half-wide pull-left">
-                        <button class="btn btn-primary btn-lg btn-block" data-dismiss="modal">Add Guest</button>
+                        <button class="btn btn-primary btn-lg btn-block" id="btn-add-guest-modal" data-dismiss="modal">Add Guest</button>
                     </div>
                     <div class="half-wide pull-right">
                         <button class="btn btn-default btn-lg btn-block" data-dismiss="modal">Cancel</button>
