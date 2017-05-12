@@ -16,7 +16,7 @@ exports.sendMessage = function(res,req) {
             client.messages.create({
             from: twilioPhone,
             to: res[i].user.phone,
-            body: ""
+            body: "Twilio SMS"
         }, function(err,message){
             if(err) {
                 console.error(err.message);
@@ -36,8 +36,6 @@ exports.receiveMessage = function(req,res){
     parseInt(eventId);
     var rsvp = msgBodyArray[1];
     rsvp = rsvp.toLowerCase().trim();
-    var foodOption = msgBodyArray[2];
-    foodOption = foodOption.toLowerCase().trim();
 
     db.user_event.find({
         where: {
@@ -55,9 +53,8 @@ exports.receiveMessage = function(req,res){
             db.user_event.update(
                 {
                     attending:true,
-                    food: foodOption
                 },
-                {where: {userId: data.id}}
+                {where: {userId: data.userId}}
             ).then(function(){
                 res.send(`
                 <Response>

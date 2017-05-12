@@ -72,21 +72,14 @@ router.post("/event", function (req, res) {
             host: true,
             attending: true
         }).then(function (newUserEvent) {
-            //the newly created user event is returned in the callback
-            //this final database collects all the user events associated with a particular user and renders dashboard with the information
-            db.user_event.findAll({
-                where: { userId: req.session.passport.user },
-                include: [db.user, db.events]
-            }).then(function (singleUsersEvents) {
-                //this doesnt do anything at the moment, the template needs to be written
-                var userEvents = {
-                    events: singleUsersEvents
-                }
-                res.render("dashboard", userEvents);
+                //redirect for new guest page
+                //res.redirect("guestlist/"+newUserEvent.eventId);
+                res.redirect("/dashboard/"+ req.session.passport.user);
             });
         });
     });
-});
+
+//dont think this is in use at the moment
 router.post("/addGuests/:eventId", function (req, res) {
     //creates the guest as a user
     db.user.create({

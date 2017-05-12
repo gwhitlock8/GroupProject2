@@ -29,32 +29,7 @@ module.exports = function(sequelize, Sequelize) {
                 Events.belongsTo(models.user_event);
             }
         }
-        // hooks: {
-        //     afterCreate: function(models,options){
-        //        models.user_events.create({
-        //             eventId: events.id,
-        //             userId: 1
-        //         }).then(function(){
-        //             console.log('Success');
-        //         });
-        //     }
-        // }
     });
-    Events.hook('afterCreate',function(models){
-        var userId;
-        var url = window.location.href;
-        if(url.indexOf("/dashboard/") !== -1) {
-        userId = url.split("/")[2];
-        models.user_event.create({
-            eventId: events.id,
-            userId: userId,
-            host: true
-        });
-        };
-        
-    });
-    // sequelize.query(
-    // "CREATE TRIGGER create_user_event AFTER INSERT ON events FOR EACH ROW INSERT into user_events (eventId,userId) VALUES (new.id,1);");
     return Events;  
 }
 
