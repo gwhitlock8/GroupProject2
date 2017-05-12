@@ -1,7 +1,7 @@
 var db = require("../models");
 var passport = require('passport');
 var router = require('express').Router();
-/*
+
 function isLoggedIn(req, res, next) {
 
     if (req.isAuthenticated())
@@ -11,7 +11,7 @@ function isLoggedIn(req, res, next) {
     res.redirect('/');
 
 }
-*/
+
 router.get("/signin/:id", (req, res) => {
     var id = req.params.id;
     db.user.findOne({
@@ -46,7 +46,7 @@ router.post("/phone/:id", (req, res) => {
 
 
 //TODO: need to flesh out and figure out how to pull correct info
-router.get("/dashboard/:id", (req, res) => {
+router.get("/dashboard/:id", isLoggedIn, (req, res) => {
     var id = req.params.id;
 
     db.user_event.findAll({
@@ -56,10 +56,10 @@ router.get("/dashboard/:id", (req, res) => {
         }
 
     }).then(function(data) {
-        console.log(data);
+        console.log("THis is the data:" + data);
         res.render("dashboard", data);
     });
-})
+});
 
 // // Local signin route
 // router.get("/signin", (req, res) => {
@@ -69,7 +69,7 @@ router.get("/dashboard/:id", (req, res) => {
 
 //removed isLoggedIn,
 // Dashboard route, protected by user logged in
-router.get("/dashboard", (req, res) => {
+router.get("/dashboard", isLoggedIn, (req, res) => {
     res.render("dashboard");
 });
 
@@ -98,7 +98,7 @@ router.post('/login', passport.authenticate('local-signin', {
 // FACEBOOK ROUTES =====================
 // =====================================
 // route for facebook authentication and login
-router.get('/auth/facebook', passport.authenticate('facebook', { scope: ['email'] }));
+router.get('/auth/facebook', passport.authenticate('facebook', { scope: ['email', 'user_photos'] }));
 
 // handle the callback after facebook has authenticated the user
 router.get('/auth/facebook/callback',
@@ -106,7 +106,7 @@ router.get('/auth/facebook/callback',
         failureRedirect: '/'
     }),
     function(req, res) {
-        console.log("facebook info: " + req.session.passport.user);
+        console.log("facebook info: " + req);
         res.redirect("/signin/" + req.session.passport.user);
     }
 );

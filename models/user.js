@@ -57,6 +57,9 @@ module.exports = function(sequelize, Sequelize) {
         facebookId: {
             type: Sequelize.STRING
         },
+        facebookPicture: {
+            type: Sequelize.STRING
+        },
     },
         {
             classMethods: {
