@@ -27,7 +27,8 @@ Heroku <https://quiet-forest-57643.herokuapp.com//>
 ### Emily Pulskamp
 * Front-end Design (html, css, javascript, jQuery)
 * Event-click handlers / modals
-* Game/Feature/Design Ideas and Suggestions
+* Wireframes / mockups
+* AJAX calls (jQuery)
 ### Paul Viola
 * Back-end Design (node.js, sequelize, MySQL, Express)
 * Sequelize Model construction (event, user-events)
