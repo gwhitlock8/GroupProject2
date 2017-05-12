@@ -38,10 +38,11 @@ app.get("/", (req, res) => {
 //load passport strategies
 require('./config/passport/passport.js')(passport, db.user);
 
-// Load auth routes
+// Load routes
 app.use(routes.authRoutes);
 app.use(routes.smsRoutes);
 app.use(routes.eventRoutes);
+app.use(routes.apiRoutes);
 
 app.use(methodOverride('_method'));
 
