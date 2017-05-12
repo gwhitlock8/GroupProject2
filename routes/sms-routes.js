@@ -30,6 +30,5 @@ router.put("/api/event/:eventid/:userid", function (req, res) {
     message.receiveMessage(req, res);
 
 });
->>>>>>> e04302eab9ae9574339bbab5eefbb72f78e31de3
 
 module.exports = router;
