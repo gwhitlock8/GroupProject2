@@ -1,4 +1,4 @@
-<nav class="navbar navbar-inverse navbar-fixed-top">
+<nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
             <button type="button" id="btn-navmenu" class="disabled navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
@@ -9,7 +9,7 @@
                     <span class="icon-bar"></span>
                 </button>
             <div class="logo"></div>
-            <a class="navbar-brand" href="#">Party Sherpa</a>
+            <span class="navbar-brand" href="#">Party Sherpa</span>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <div id="profile">
@@ -27,11 +27,10 @@
 
 <div class="container" id="user-menu">
     <h2>Host</h2>
-    <a class="btn btn-list" id="btn-event-create">Create New Event<i class="fa fa-chevron-right" aria-hidden="true"></i></a>
-    <a class="btn btn-list" id="456">Manage 10th Anniversary<i class="fa fa-chevron-right" aria-hidden="true"></i></a>
-    <hr />
+    <a class="btn btn-default btn-list" id="btn-event-create">Create New Event<i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+    <a class="btn btn-default btn-list" id="456">Manage 10th Anniversary<i class="fa fa-chevron-right" aria-hidden="true"></i></a>
     <h2>Guest</h2>
-    <a class="btn btn-list event-name" id="btn-789">Gavin &amp; Christine's Wedding<i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+    <a class="btn btn-default btn-list event-name" id="btn-789">Gavin &amp; Christine's Wedding<i class="fa fa-chevron-right" aria-hidden="true"></i></a>
 </div>
 
 <div class="container" id="event-details">
@@ -96,7 +95,7 @@
             <label for="new-event-datetime">Date &amp; Time</label>
             <div class="input-group date" id="container-new-event-datetime">
                 <input type='text' class="form-control" id="new-event-datetime" />
-                <span class="input-group-addon">
+                <span class="btn btn-default input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                 </span>
             </div>
