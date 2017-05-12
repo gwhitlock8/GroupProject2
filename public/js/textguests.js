@@ -1,10 +1,10 @@
 $(document).ready(function(){
-    var url = window.location.search;
+    var url = window.location.href;
     var eventId;
     var guests;
     var guestContainer = $(".guest-container");
-    if(url.indexOf("?event_id=") !== -1) {
-        eventId = url.split("=")[1];
+    if(url.indexOf("/dashboard/") !== -1) {
+        eventId = url.split("/")[2];
         getGuests(eventId);
     }
 
@@ -12,7 +12,7 @@ $(document).ready(function(){
     function getGuests (events) {
         eventId = events || "";
         if(eventId) {
-            eventId = "/?event_id=" + eventId;
+            eventId = "/dashboard/" + eventId;
         }
         $.get("/api/guests" + eventId, function(data){
             console.log("Guests", data);
@@ -48,24 +48,6 @@ $(document).ready(function(){
         });
     });
 
-
-
-    
-    // Find and remove selected table rows and removes the guest from user-event table
-    $(".delete-row").click(function(id){
-        $("table tbody").find('input[name="record"]').each(function(){
-            if($(this).is(":checked")){
-                $(this).parents("tr").remove();
-                $.ajax({
-                    method: "DELETE",
-                    url: "api/event/" + id + "/" + guestId
-                })
-                .done(function () {
-                    getGuests();
-                });
-            }
-        });
-    });
     
 
 
