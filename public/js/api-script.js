@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
     /* -----------  AJAX CALLS ---------- */
     $.get("/api/user", (data) => {
         console.log(data);
@@ -14,5 +14,16 @@ $(document).ready(function() {
         }
     });
 
+    $("#edit-email").on("click", function () {
 
-})
+        $.ajax({
+            method: "PUT",
+            url: "/api/email",
+            data: email
+        })
+            .done(function () {
+                window.location.href = "/dashboard";
+            });
+
+    });
+});
