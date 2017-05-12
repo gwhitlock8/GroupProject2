@@ -60,10 +60,10 @@ router.get("/dashboard/:id", (req, res) => {
     });
 })
 
-// Local signin route
-router.get("/signin", (req, res) => {
-    res.render("signin");
-});
+// // Local signin route
+// router.get("/signin", (req, res) => {
+//     res.render("signin");
+// });
 
 
 //removed isLoggedIn,
