@@ -36,5 +36,5 @@ Heroku: <https://quiet-forest-57643.herokuapp.com/>
 
 ## Technologies/Libraries Used:
 * Passport.js (passport-local and passport-facebook):  <https://github.com/jaredhanson/passport-github/>
-* Twilio: <http://twilio.github.io/twilio/>
+* Twilio: <https://www.twilio.com/>
 * Sequelize: <https://github.com/sequelize/sequelize/>
