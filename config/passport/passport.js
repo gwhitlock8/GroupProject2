@@ -168,7 +168,7 @@ module.exports = function (passport, user) {
         clientID: configAuth.facebookAuth.clientID,
         clientSecret: configAuth.facebookAuth.clientSecret,
         callbackURL: configAuth.facebookAuth.callbackURL,
-        profileFields: ['id', 'email', 'first_name', 'last_name'],
+        profileFields: ['id', 'email', 'first_name', 'last_name', 'photos'],
         enableProof: true
 
     },
@@ -204,7 +204,8 @@ module.exports = function (passport, user) {
                                 password: profile.id,
                                 firstname: profile.name.givenName,
                                 lastname: profile.name.familyName,
-                                facebookId: profile.id
+                                facebookId: profile.id,
+                                facebookPicture: profile.photos[0].value
                             }
 
                         User.create(data).then(function (newUser, created) {

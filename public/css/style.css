@@ -113,11 +113,16 @@
 
 body {
     background: #fff url('../images/bg.png') 0 0 repeat;
+    color: #444;
 }
 
 .container {
     margin-top: 60px;
     margin-bottom: 20px;
+}
+
+#splash {
+    margin-top: 10px;
 }
 
 
@@ -128,11 +133,12 @@ h2,
 h3,
 h4 {
     font-family: 'Bree Serif', 'Trebuchet MS', Georgia, serif;
+    color: #609b57;
 }
 
 h2,
 h3 {
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px dashed #acd69a;
 }
 
 h2 {
@@ -141,7 +147,7 @@ h2 {
 
 h3 {
     margin-top: 20px;
-    border-top: 3px solid #ddd;
+    border-top: 3px solid #acd69a;
     padding: 10px 0;
 }
 
@@ -179,6 +185,9 @@ nav .container {
 
 nav {
     margin-top: -60px;
+    -webkit-box-shadow: 0px 0px 10px 0px rgba(174, 158, 152, 1);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(174, 158, 152, 1);
+    box-shadow: 0px 0px 10px 0px rgba(174, 158, 152, 1);
 }
 
 nav .logo {
@@ -194,18 +203,18 @@ nav .logo {
     border: 1px solid #beaca5;
 }
 
-.navbar-inverse .navbar-brand {
+.navbar-default .navbar-brand {
     padding: 17px 15px;
     font-family: 'Oleo Script Swash Caps', cursive;
     text-align: center;
     letter-spacing: -1px;
-    color: #acd69a;
+    color: #609b57;
     font-size: 24px;
 }
 
 .navbar-collapse {
-    background-color: #eee;
-    border-color: #bbb;
+    background-color: #d7ccc7;
+    border-bottom: 1px solid #a28980!important;
 }
 
 .navbar-inverse {
@@ -234,23 +243,10 @@ nav .logo {
     display: block;
     width: 100%;
     text-align: left;
-    border: 1px solid #ddd;
     padding: 10px;
     border-radius: 4px;
     margin: 3px 0 3px 0;
-    background: #fcfcfc;
-    background: -moz-linear-gradient(top, #fcfcfc 0%, #e1eef7 100%);
-    background: -webkit-linear-gradient(top, #fcfcfc 0%, #e1eef7 100%);
-    background: linear-gradient(to bottom, #fcfcfc 0%, #e1eef7 100%);
-    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#fcfcfc', endColorstr='#e1eef7', GradientType=0);
-}
-
-.container .btn-list:hover {
-    background: #f2f3f7;
-    background: -moz-linear-gradient(top, #f2f3f7 0%, #d3e0ed 100%);
-    background: -webkit-linear-gradient(top, #f2f3f7 0%, #d3e0ed 100%);
-    background: linear-gradient(to bottom, #f2f3f7 0%, #d3e0ed 100%);
-    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#f2f3f7', endColorstr='#d3e0ed', GradientType=0);
+    color: #782e5d;
 }
 
 .container .btn-list i {
@@ -260,7 +256,7 @@ nav .logo {
 }
 
 
-/* ---------- nevbar profile --------- */
+/* ---------- navbar profile --------- */
 
 #profile {
     padding-bottom: 10px;
@@ -277,6 +273,7 @@ nav .logo {
     border-bottom: 0 none;
     margin: 20px 0 5px 0;
     padding: 0;
+    color: #444;
 }
 
 .navbar-collapse hr {
@@ -304,6 +301,10 @@ nav .logo {
     line-height: 32px;
 }
 
+hr {
+    border-top: 1px dashed #acd69a;
+}
+
 
 /* --------------------- FORMS ---------------
 -------------------------------------------*/
@@ -312,8 +313,10 @@ nav .logo {
     margin: 2px 0 8px 0;
 }
 
-input.form-control {
+input.form-control,
+span.input-group-addon {
     height: 36px;
+    border: 1px solid #beaca5;
 }
 
 
