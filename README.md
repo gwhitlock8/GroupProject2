@@ -9,7 +9,7 @@ Heroku <https://quiet-forest-57643.herokuapp.com//>
 
 ## Project Members: 
 ### Stephen Pino - <https://github.com/StephenPino/>
-### Gavin Whitlock - 
+### Gavin Whitlock - <https://github.com/gwhitlock8/>
 ### Emily Pulskamp - 
 ### Paul Viola - 
 
