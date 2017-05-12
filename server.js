@@ -43,6 +43,7 @@ app.use(routes.authRoutes);
 app.use(routes.smsRoutes);
 app.use(routes.eventRoutes);
 app.use(routes.apiRoutes);
+app.use(routes.guestRoutes);
 
 app.use(methodOverride('_method'));
 

@@ -9,7 +9,6 @@ router.get('/event', function(req, res) {
             console.log("gets all events.  event-routes.js line 9");
         });
 });
-
 //get all information about a specific event
 router.get('/event/:id', function(req, res) {
     db.events.findOne({
@@ -21,7 +20,6 @@ router.get('/event/:id', function(req, res) {
         console.log("get all information about a specific response. event-routes.js line 20");
     });
 });
-
 //finds a single guest that is attending a specific event
 router.get('/api/event/:eventid/:userid', function(req, res) {
     db.user_event.findOne({
@@ -37,7 +35,6 @@ router.get('/api/event/:eventid/:userid', function(req, res) {
         res.json(data);
     });
 });
-
 //gets a single user from an event and deletes that user from the guest list
 router.delete('/api/event/:eventid/:userid', function(req, res) {
     db.user_event.destroy({
@@ -49,7 +46,6 @@ router.delete('/api/event/:eventid/:userid', function(req, res) {
         res.json(data);
     });
 });
-
 //gets a single user from an event
 router.get('/api/event/:id', function(req, res) {
     db.user_event.findAll({
@@ -85,37 +81,43 @@ router.post("/event", function(req, res) {
                 include: [db.user, db.events]
             }).then(function(singleUsersEvents) {
                 //this doesnt do anything at the moment, the template needs to be written
-                console.log(singleUsersEvents[0].dataValues.user);
-                res.render("dashboard", singleUsersEvents);
+                var userEvents = {
+                    events: singleUsersEvents
+                }
+                res.render("dashboard", userEvents);
             });
         });
     });
-});
+}); <<
+<< << < HEAD
 
-router.post("/addGuests/:eventId", function(req, res) {
-    //creates the guest as a user
-    db.user.create({
-        email: req.body.email,
-        phone: req.body.phone,
-        firstname: req.body.firstname,
-        lastname: req.body.lastname
-    }).then(function(newUser) {
-        //uses the newUser to create a user_event linking the tables
-        db.user_event.create({
-            userId: newUser.id,
-            eventId: req.params.eventId,
-            host: false
-        }).then(function(newUserEvent) {
-            //this final database collects all the user events associated with a particular user and renders dashboard with the information
-            db.user_event.findAll({
-                where: { userId: req.session.passport.user },
-                include: [db.user, db.events]
-            }).then(function(singleUsersEvents) {
-                //this doesnt do anything at the moment, the template needs to be written
-                res.render("dashboard", singleUsersEvents);
+router.post("/addGuests/:eventId", function(req, res) { ===
+            === =
+            router.post("/addGuests/:eventId", function(req, res) { >>>
+                >>> > 4 b14534853050eaae0d9563300e690ba5babdfc1
+                //creates the guest as a user
+                db.user.create({
+                    email: req.body.email,
+                    phone: req.body.phone,
+                    firstname: req.body.firstname,
+                    lastname: req.body.lastname
+                }).then(function(newUser) {
+                    //uses the newUser to create a user_event linking the tables
+                    db.user_event.create({
+                        userId: newUser.id,
+                        eventId: req.params.eventId,
+                        host: false
+                    }).then(function(newUserEvent) {
+                        //this final database collects all the user events associated with a particular user and renders dashboard with the information
+                        db.user_event.findAll({
+                            where: { userId: req.session.passport.user },
+                            include: [db.user, db.events]
+                        }).then(function(singleUsersEvents) {
+                            //this doesnt do anything at the moment, the template needs to be written
+                            res.render("dashboard", singleUsersEvents);
+                        });
+                    });
+                });
             });
-        });
-    });
-});
 
-module.exports = router;
+            module.exports = router;

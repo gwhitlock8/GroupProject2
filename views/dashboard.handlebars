@@ -30,6 +30,28 @@
     <h2>Host</h2>
     <a class="btn btn-default btn-list" id="btn-event-create">Create New Event<i class="fa fa-chevron-right" aria-hidden="true"></i></a>
     <a class="btn btn-default btn-list" id="456">Manage 10th Anniversary<i class="fa fa-chevron-right" aria-hidden="true"></i></a>
+
+    {{#each events}} {{#if this.host}}
+        <!-- if its in user_events use this.property
+            if its in users or events its this.dataValues.FOREIGNTABLE.column-->
+        <table>
+        <thead>
+            <tr>
+                <th>Event Name</th>
+                <th>Event Date</th>
+                <th>Location</th>
+            </tr>
+        </thead>
+        <tbody class="events-container">
+                <tr>
+                    <td>{{this.dataValues.event.event_name}}</td>
+                    <td>{{this.dataValues.event.event_date}}</td>
+                    <td>{{this.dataValues.event.location}}</td>
+                    <td><a class="btn" href="/guestlists/{{this.eventId}}">Add a guest</a></td>
+                </tr>         
+        </tbody>
+        </table>
+    {{/if}}{{/each}}
     <h2>Guest</h2>
     <a class="btn btn-default btn-list event-name" id="btn-789">Gavin &amp; Christine's Wedding<i class="fa fa-chevron-right" aria-hidden="true"></i></a>
 </div>
@@ -129,7 +151,7 @@
             <button class="btn btn-primary btn-lg btn-block" type="submit">Save</button>
         </div>
         <div class="half-wide pull-right">
-            <button class="btn btn-default btn-lg btn-block">Cancel</button>
+            <button "btn btn-default btn-lg btn-block">Cancel</button>
         </div>
     </form>
 </div>
