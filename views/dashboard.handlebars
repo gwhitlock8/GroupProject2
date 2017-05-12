@@ -34,10 +34,24 @@
     {{#each events}} {{#if this.host}}
     <!-- if its in user_events use this.property
             if its in users or events its this.dataValues.FOREIGNTABLE.column-->
-    <a class="btn btn-default btn-list" href="{{this.dataValues.event.eventId}}">Manage {{this.dataValues.event.event_name}}<i class="fa fa-chevron-right" aria-hidden="true"></i></a>
-    {{/if}}{{/each}} 
-
-    {{#unless this.host}}
+        <table>
+        <thead>
+            <tr>
+                <th>Event Name</th>
+                <th>Event Date</th>
+                <th>Location</th>
+            </tr>
+        </thead>
+        <tbody class="events-container">
+                <tr>
+                    <td>{{this.dataValues.event.event_name}}</td>
+                    <td>{{this.dataValues.event.event_date}}</td>
+                    <td>{{this.dataValues.event.location}}</td>
+                    <td><a class="btn" href="/guestlist/{{this.eventId}}">Add a guest</a></td>
+                </tr>         
+        </tbody>
+        </table>
+    {{/if}}{{/each}}
     <h2>Guest</h2>
     {{#each events}}
     <a class="btn btn-default btn-list event-name" href="{{this.dataValues.event.eventId}}" id="btn-789">{{this.dataValues.event.event_name}}<i class="fa fa-chevron-right" aria-hidden="true"></i></a>

@@ -15,7 +15,7 @@ router.get("/signin/:id", (req, res) => {
         where: {
             id: id
         }
-    }).then(function(data) {
+    }).then(function (data) {
         if (data.phone) {
             res.redirect("/dashboard/" + id);
         } else {
@@ -33,12 +33,12 @@ router.post("/phone/:id", (req, res) => {
     db.user.update({
         phone: req.body.phone
     }, {
-        where: {
-            id: id
-        }
-    }).then(function(data) {
-        res.redirect("/dashboard/" + id);
-    });
+            where: {
+                id: id
+            }
+        }).then(function (data) {
+            res.redirect("/dashboard/" + id);
+        });
 });
 
 
@@ -46,15 +46,17 @@ router.post("/phone/:id", (req, res) => {
 router.get("/dashboard/:id", isLoggedIn, (req, res) => {
     var id = req.params.id;
 
+    //the newly created user event is returned in the callback
+    //this final database collects all the user events associated with a particular user and renders dashboard with the information
     db.user_event.findAll({
-        include: [db.user, db.events],
-        where: {
-            eventId: id
+        where: { userId: req.session.passport.user },
+        include: [db.user, db.events]
+    }).then(function (singleUsersEvents) {
+        //this doesnt do anything at the moment, the template needs to be written
+        var userEvents = {
+            events: singleUsersEvents
         }
-
-    }).then(function(data) {
-        console.log("THis is the data:" + data);
-        res.render("dashboard", data);
+        res.render("dashboard", userEvents);
     });
 });
 
@@ -65,6 +67,7 @@ router.get("/dashboard/:id", isLoggedIn, (req, res) => {
 
 
 //removed isLoggedIn,
+//dont think this is ever triggered?
 // Dashboard route, protected by user logged in
 router.get("/dashboard", isLoggedIn, (req, res) => {
     res.render("dashboard/" + req.session.passport.user);
@@ -80,14 +83,14 @@ router.get("/logout", (req, res) => {
 
 router.post('/signup', passport.authenticate('local-signup', {
     failureRedirect: '/'
-}), function(req, res) {
+}), function (req, res) {
     console.log("This is user info: " + req.session.passport.user);
     res.redirect("/signin/" + req.session.passport.user);
 });
 
 router.post('/login', passport.authenticate('local-signin', {
     failureRedirect: '/'
-}), function(req, res) {
+}), function (req, res) {
     res.redirect("/dashboard/" + req.session.passport.user)
 });
 
@@ -102,7 +105,7 @@ router.get('/auth/facebook/callback',
     passport.authenticate('facebook', {
         failureRedirect: '/'
     }),
-    function(req, res) {
+    function (req, res) {
         console.log("facebook info: " + req);
         res.redirect("/signin/" + req.session.passport.user);
     }

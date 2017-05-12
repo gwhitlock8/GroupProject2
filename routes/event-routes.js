@@ -57,13 +57,13 @@ router.get('/api/event/:id', function(req, res) {
     });
 });
 
-router.post("/event", function(req, res) {
+router.post("/guestlist", function (req, res) {
     //The information for the form is taken and used to create an event in the events table
     db.events.create({
         event_name: req.body.event_name,
         event_date: req.body.event_date,
         location: req.body.location
-    }).then(function(createdEvent) {
+    }).then(function (createdEvent) {
         //the newly created event is returned in the callback
         //this function creates a new user_event and specifices the id's of the user and event relating the two tables
         db.user_event.create({
@@ -73,21 +73,12 @@ router.post("/event", function(req, res) {
             eventId: createdEvent.id,
             host: true,
             attending: true
-        }).then(function(newUserEvent) {
-            //the newly created user event is returned in the callback
-            //this final database collects all the user events associated with a particular user and renders dashboard with the information
-            db.user_event.findAll({
-                where: { userId: req.session.passport.user },
-                include: [db.user, db.events]
-            }).then(function(singleUsersEvents) {
-                //this doesnt do anything at the moment, the template needs to be written
-                var userEvents = {
-                    events: singleUsersEvents
-                }
-                res.render("dashboard", userEvents);
+        }).then(function (newUserEvent) {
+                //redirect for new guest page
+                //res.redirect("guestlist/"+newUserEvent.eventId);
+                res.redirect("/dashboard/"+ req.session.passport.user);
             });
         });
     });
-});
 
 module.exports = router;
