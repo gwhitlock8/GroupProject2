@@ -53,7 +53,7 @@ router.get("/dashboard/:id", isLoggedIn, (req, res) => {
         }
 
     }).then(function(data) {
-        console.log("THis is the data:" + data);
+        console.log("This is the data:" + data);
         res.render("dashboard", data);
     });
 });

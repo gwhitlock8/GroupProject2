@@ -3,8 +3,8 @@ var bodyParser = require("body-parser");
 var methodOverride = require('method-override');
 var passport = require('passport');
 var session = require('express-session');
-var exphbs = require('express-handlebars')
-var routes = require('./routes')
+var exphbs = require('express-handlebars');
+var routes = require('./routes');
 
 // Sets up the Express App
 // =============================================================
@@ -53,8 +53,8 @@ app.set('view engine', 'handlebars');
 //require('./routes/auth-routes.js')(app, passport);
 
 // Syncing our sequelize models and then starting our express app
-db.sequelize.sync({ force: true }).then(function () {
-    app.listen(PORT, function () {
+db.sequelize.sync({ force: true }).then(function() {
+    app.listen(PORT, function() {
         console.log("App listening on PORT " + PORT);
     });
 });

@@ -16,6 +16,23 @@ $(function() {
 
 });
 
+
+//Registration Modal
+function registerValidate(formId) {
+    //check if both passwords match, if not: return "Error: Passwords do not match"
+    //check if any field is empty, if yes: return "Error: Some information is missing"
+    var thisEmail = $("input[type='email']").val();
+    console.log("formId: " + formId);
+    console.log("thisemail: " + thisEmail);
+    /*
+    if (validator.isEmail(formId.thisEmail)) {
+        //cool
+        console.log("email ok");
+    } else {
+        console.log("email error");
+    }*/
+}
+
 $(document).ready(function() {
     console.log("front-end js loaded");
     $('#phoneModal').modal('show');
@@ -23,6 +40,7 @@ $(document).ready(function() {
     $("#event-details").hide();
     $("#event-create").hide();
     $("#meal-choices").hide();
+
     var newInput = '<div class="input-group"><input type="text" class="form-control new-input"><span class="input-group-addon input-group-delete"><i class="fa fa-times-circle" aria-hidden="true"></i></span></div>'
 
     $('#toggle-rsvp').bootstrapToggle({
@@ -32,11 +50,6 @@ $(document).ready(function() {
         width: 70
     });
 
-    //Registration Modal
-    function registerValidate() {
-        //check if both passwords match, if not: return "Error: Passwords do not match"
-        //check if any field is empty, if yes: return "Error: Some information is missing"
-    }
 
     /* -------------------------------------------
     ---------------    NAVIGATION    -----------*/
@@ -63,6 +76,11 @@ $(document).ready(function() {
 
     /* ----------------------------------------
     ------------  CLICK EVENTS  ------------*/
+
+    $("#signup .submit").on("click", function() {
+        registerValidate("signup");
+        console.log("signin submit clicked");
+    });
 
     $("#btn-login").on("click", function() {
         $("#btn-navmenu").removeClass('disabled');

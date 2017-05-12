@@ -264,13 +264,6 @@ nav .logo {
     margin-bottom: 10px;
 }
 
-#profile i {
-    font-size: 50px;
-    height: 50px;
-    width: 50px;
-    text-align: center;
-}
-
 #profile h3 {
     border-top: 0 none;
     border-bottom: 0 none;
@@ -283,9 +276,13 @@ nav .logo {
     border-top-color: #ccc;
 }
 
-#profile-phone {
+#profile .phone {
     font-size: 18px;
     margin-left: 72px;
+}
+
+#profile .phone i {
+    font-size: 20px;
 }
 
 #user-picture {
