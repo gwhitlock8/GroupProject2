@@ -16,7 +16,7 @@ exports.sendMessage = function(res,req) {
             client.messages.create({
             from: twilioPhone,
             to: res[i].user.phone,
-            body: "Twilio SMS"
+            body: "You have been invited to event number" + res[i].eventId+". Respond to RSVP. Enter event number followed by RSVP (3, yes)"
         }, function(err,message){
             if(err) {
                 console.error(err.message);
@@ -59,7 +59,7 @@ exports.receiveMessage = function(req,res){
                 res.send(`
                 <Response>
                     <Message>
-                        Hello ${msgFrom}. You said: ${msgBody}
+                        Hello ${data.user.firstname}. You said that you will attend the event!
                     </Message>
                 </Response>
                 `);
@@ -68,7 +68,7 @@ exports.receiveMessage = function(req,res){
             res.send(`
                 <Response>
                     <Message>
-                        Hello ${msgFrom}. You said: ${msgBody}
+                        Hello ${data.user.firstname}. You said that you are unable to attend!
                     </Message>
                 </Response>
             `);
