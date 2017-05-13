@@ -1,49 +1,82 @@
-<div>
-    <h2>The event is: {{this.event.event_name}}</h2>
-    <h2>The location is: {{this.event.location}}</h2>
-    <h2>this is the eventId {{this.event.id}}</h2>
-</div>
-<form id="guestAdd" name="guestAdd" method="post" action="/guestlist/{{this.event.id}}">
-    <div class="form-group">
-        <label for="firstname">First name</label>
-        <input type="text" name="firstname" class="form-control" placeholder="Joe">
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" id="btn-navmenu" class="disabled navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            <div class="logo"></div>
+            <span class="navbar-brand" href="#">Party Sherpa</span>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <div id="profile">
+                <div id="user-picture">
+                    <i class="fa fa-user pull-left" aria-hidden="true"></i>
+                </div>
+                <h3></h3>
+            </div>
+            <p class="error text-danger"></p>
+            <p class="phone"><i class="fa fa-phone" aria-hidden="true"></i> <span></span> <a class="btn btn-default edit"><i class="fa fa-pencil" aria-hidden="true"></i></a></p>
+            <p class="email"><i class="fa fa-envelope" aria-hidden="true"></i> <span></span> <a class="btn btn-default edit"><i class="fa fa-pencil" aria-hidden="true"></i></a></p>
+            <hr />
+            <p><a class="btn btn-default btn-md btn-block" href="/dashboard" id="btn-events">My Events</a></p>
+            <p><a class="btn btn-default btn-md btn-block" href="/logout" id="btn-logout">Log Out</a></p>
+        </div>
+        <!--/.nav-collapse -->
     </div>
-    <div class="form-group">
-        <label for="lastname">Last name</label>
-        <input type="text" name="lastname" class="form-control" placeholder="Smith">
-    </div>
-    <div class="form-group">
-        <label for="phone">Phone #</label>
-        <input type="text" name="phone" class="form-control" placeholder="+1-512-123-4567">
-    </div>
-    <div class="form-group">
-        <label for="email">Email</label>
-        <input type="email" name="email" class="form-control" id="userid" placeholder="you@domain.com">
-    </div>
-    <input type="submit" class="btn btn-primary btn-lg submit">
-</form>
-<br/>
-<br/>
+</nav>
 
-<table>
-    <thead>
-        <tr>
-            <th>Guest first name</th>
-            <th>Guest last name</th>
-            <th>Guest Phone</th>
-            <th>Guest Email</th>
-        </tr>
-    </thead>
-    <!--everyone triggers as a host idk why-->
-    {{#each user_event}} {{#if this.host}}
-    <tbody id="guest-container">
-        <tr>
-           <td>{{this.user.firstname}}</td>
-            <td>{{this.user.lastname}}</td>
-            <td>{{this.user.phone}}</td>
-            <td>{{this.user.email}}</td>
-            <td><a class="btn" href="/api/event/guests/{{this.eventId}}">Send a message!</a></td>
-        </tr>
-    </tbody>
-    {{/if}} {{/each}}
-</table>
+<div class="container" id="event-create-guests">
+    <h2>Add guests</h2>
+    <h4>{{this.event.event_name}} at {{this.event.location}}</h4>
+    <form id="guestAdd" name="guestAdd" method="post" action="/guestlist/{{this.event.id}}">
+        <div class="form-group">
+            <label for="firstname">First name</label>
+            <input type="text" name="firstname" class="form-control" placeholder="Joe">
+        </div>
+        <div class="form-group">
+            <label for="lastname">Last name</label>
+            <input type="text" name="lastname" class="form-control" placeholder="Smith">
+        </div>
+        <div class="form-group">
+            <label for="phone">Phone #</label>
+            <input type="text" name="phone" class="form-control" placeholder="+1-512-123-4567">
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" name="email" class="form-control" id="userid" placeholder="you@domain.com">
+        </div>
+        <input type="submit" class="btn btn-primary btn-md submit">
+    </form>
+
+    <hr />
+    <h4>Guest List So Far</h4>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Phone Number</th>
+                <th>Email Address</th>
+                <th>Guest Attending</th>
+                <th>Send SMS</th>
+            </tr>
+        </thead>
+        <!--everyone triggers as a host idk why-->
+        {{#each user_event}} {{#if this.host}}
+        <tbody id="guest-container">
+            <tr>
+                <td>{{this.user.firstname}} {{this.user.lastname}}</td>
+                <td>{{this.user.phone}}</td>
+                <td>{{this.user.email}}</td>
+                <td>{{this.attending}}</td>
+                <td><a class="btn btn-default" href="/api/event/guests/{{this.eventId}}">Send a message &nbsp; &nbsp;<i class="fa fa-phone" aria-hidden="true"></i></a></td>
+            </tr>
+        </tbody>
+        {{/if}} {{/each}}
+    </table>
+    </div>
+</div>
+<script src="/js/api-script.js"></script>
