@@ -4,7 +4,7 @@
 ## Party Sherpa (Event Planning App)
 
 ## Hosted:
-Heroku: <https://quiet-forest-57643.herokuapp.com/>
+Heroku: <https://ancient-reaches-22555.herokuapp.com/>
 
 ## Project Members: 
 ### Stephen Pino - <https://github.com/StephenPino/>
