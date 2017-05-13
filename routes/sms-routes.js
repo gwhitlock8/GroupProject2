@@ -2,12 +2,15 @@ var db = require('../models');
 var message = require('../utils/messages-sms');
 var router = require('express').Router();
 //returns a full guest lists based on the event that is selected
-router.get('/api/event/guests/:eventId', function (req, res) {
+router.get('/api/event/guests/:eventId/:userId', function (req, res) {
     var eventId = req.params.eventId;
-    db.user_event.findAll({
+    var userId = req.params.userId;
+
+    db.user_event.findOne({
         where: {
             eventId: eventId,
-            host: false
+            host: false,
+            userId: userId
         },
         include: [{
             model: db.user,

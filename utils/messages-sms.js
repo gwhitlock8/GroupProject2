@@ -8,25 +8,34 @@ var authToken = process.env.TWILIO_AUTH_TOKEN;
 var twilioPhone = process.env.TWILIO_NUMBER;
 var myNumber = process.env.CELL_PHONE_NUMBER;
 
-var client = require('twilio')(accountSid,authToken);
+var client = require('twilio')(accountSid, authToken);
 
 //send message to all guests
-exports.sendMessage = function(res,req) {
-    for(i=0;i<res.length; i++){
-            client.messages.create({
+exports.sendMessage = function (res, req) {
+    /*for (i = 0; i < res.length; i++) {
+        client.messages.create({
             from: twilioPhone,
             to: res[i].user.phone,
-            body: "You have been invited to event number: " + res[i].eventId+". Respond to RSVP. Enter event number followed by RSVP ("+res[i].eventId+", yes)"
-        }, function(err,message){
-            if(err) {
+            body: "You have been invited to event number: " + res.eventId + ". Respond to RSVP. Enter event number followed by RSVP (" + res.eventId + ", yes)"
+        }, function (err, message) {
+            if (err) {
                 console.error(err.message);
             }
         });
-    }
+    }*/
+    client.messages.create({
+        from: twilioPhone,
+        to: res.user.phone,
+        body: "You have been invited to event number: " + res.eventId + ". Respond to RSVP. Enter event number followed by RSVP (" + res.eventId + ", yes)"
+    }, function (err, message) {
+        if (err) {
+            console.error(err.message);
+        }
+    });
 };
 
 //receive messages from guests
-exports.receiveMessage = function(req,res){   
+exports.receiveMessage = function (req, res) {
 
     var msgFrom = req.body.From;
     var msgBody = req.body.Body;
@@ -47,15 +56,15 @@ exports.receiveMessage = function(req,res){
                 phone: msgFrom
             }
         }]
-    }).then(function (data){
+    }).then(function (data) {
         console.log(data);
-        if(rsvp === 'yes'){
+        if (rsvp === 'yes') {
             db.user_event.update(
                 {
-                    attending:true
+                    attending: true
                 },
-                {where: {userId: data.userId}}
-            ).then(function(){
+                { where: { userId: data.userId } }
+            ).then(function () {
                 res.send(`
                 <Response>
                     <Message>
@@ -74,7 +83,7 @@ exports.receiveMessage = function(req,res){
             `);
         }
     });
-};   
-        
+};
+
 
 
