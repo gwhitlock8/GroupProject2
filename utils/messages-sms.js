@@ -16,7 +16,7 @@ exports.sendMessage = function(res,req) {
             client.messages.create({
             from: twilioPhone,
             to: res[i].user.phone,
-            body: "You have been invited to event number" + res[i].eventId+". Respond to RSVP. Enter event number followed by RSVP (3, yes)"
+            body: "You have been invited to event number: " + res[i].eventId+". Respond to RSVP. Enter event number followed by RSVP ("+res[i].eventId+", yes)"
         }, function(err,message){
             if(err) {
                 console.error(err.message);
