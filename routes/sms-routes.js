@@ -21,7 +21,7 @@ router.get('/api/event/guests/:eventId', function (req, res) {
 //     message.receiveMessage(req,res)
 // });
 //PUT route for updating user dinner options and RSVP
-router.put("/api/event/:eventid/:userid", function (req, res) {
+router.post("/api/event/sms", function (req, res) {
     message.receiveMessage(req, res);
 });
 
