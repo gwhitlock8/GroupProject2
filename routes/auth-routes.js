@@ -70,7 +70,7 @@ router.get("/dashboard/:id", isLoggedIn, (req, res) => {
 //dont think this is ever triggered?
 // Dashboard route, protected by user logged in
 router.get("/dashboard", isLoggedIn, (req, res) => {
-    res.render("dashboard/" + req.session.passport.user);
+    res.redirect("dashboard/" + req.session.passport.user);
 });
 
 
