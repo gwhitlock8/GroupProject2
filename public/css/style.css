@@ -273,16 +273,7 @@ nav .logo {
 }
 
 .navbar-collapse hr {
-    border-top-color: #ccc;
-}
-
-#profile .phone {
-    font-size: 18px;
-    margin-left: 72px;
-}
-
-#profile .phone i {
-    font-size: 20px;
+    border-top-color: #baa;
 }
 
 #user-picture {

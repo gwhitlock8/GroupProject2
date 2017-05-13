@@ -21,16 +21,18 @@ $(function() {
 function registerValidate(formId) {
     //check if both passwords match, if not: return "Error: Passwords do not match"
     //check if any field is empty, if yes: return "Error: Some information is missing"
-    var thisEmail = $("input[type='email']").val();
+    var thisEmail = "#" + formId + " " + "input[type='email']";
+    var thisEmailval = $(thisEmail).val();
     console.log("formId: " + formId);
-    console.log("thisemail: " + thisEmail);
-    /*
-    if (validator.isEmail(formId.thisEmail)) {
-        //cool
+    console.log("thisemailval: " + thisEmailval);
+
+    if (validator.isEmail(thisEmailval)) {
         console.log("email ok");
+        $('#modal-signup').modal('hide');
     } else {
         console.log("email error");
-    }*/
+    }
+
 }
 
 $(document).ready(function() {
@@ -78,8 +80,8 @@ $(document).ready(function() {
     ------------  CLICK EVENTS  ------------*/
 
     $("#signup .submit").on("click", function() {
+        event.preventDefault();
         registerValidate("signup");
-        console.log("signin submit clicked");
     });
 
     $("#btn-login").on("click", function() {
@@ -122,7 +124,6 @@ $(document).ready(function() {
             $("#meal-choices .new-input").parent().remove();
         }
     });
-
 
     /* -----------  RE-USEABLE CLICK EVENTS ---------- */
 
