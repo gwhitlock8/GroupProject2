@@ -54,7 +54,7 @@ exports.receiveMessage = function(req,res){
                 {
                     attending:true
                 },
-                {where: {userId: data.id}}
+                {where: {userId: data.userId}}
             ).then(function(){
                 res.send(`
                 <Response>
