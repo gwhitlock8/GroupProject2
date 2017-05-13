@@ -46,6 +46,7 @@ exports.receiveMessage = function (req, res) {
     var rsvp = msgBodyArray[1];
     rsvp = rsvp.toLowerCase().trim();
 
+//IDK why this doesnt update
     db.user_event.find({
         where: {
             eventId: eventId
