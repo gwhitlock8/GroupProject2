@@ -36,8 +36,6 @@ exports.receiveMessage = function(req,res){
     parseInt(eventId);
     var rsvp = msgBodyArray[1];
     rsvp = rsvp.toLowerCase().trim();
-    var foodOption = msgBodyArray[2];
-    foodOption = foodOption.toLowerCase().trim();
 
     db.user_event.find({
         where: {
@@ -54,8 +52,7 @@ exports.receiveMessage = function(req,res){
         if(rsvp === 'yes'){
             db.user_event.update(
                 {
-                    attending:true,
-                    food: foodOption
+                    attending:true
                 },
                 {where: {userId: data.id}}
             ).then(function(){
