@@ -15,6 +15,7 @@ router.get('/api/event/guests/:eventId', function (req, res) {
         }]
     }).then(function (data) {
          message.sendMessage(data);
+         res.redirect("/dashboard/" + req.session.passport.user);
     });
 });
 // router.post('api/event/:eventid/:userid', function(req,res){
@@ -23,7 +24,6 @@ router.get('/api/event/guests/:eventId', function (req, res) {
 //PUT route for updating user dinner options and RSVP
 router.post("/api/event/sms", function (req, res) {
     message.receiveMessage(req, res);
-    res.redirect("/dashboard/" + req.session.passport.user);
 });
 
 module.exports = router;
