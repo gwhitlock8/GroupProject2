@@ -76,6 +76,90 @@ $(document).ready(function() {
         format: 'YYYY-MM-DD HH:mm:ss'
     });
 
+
+    /* ----------------------------------------------------------
+    --------  PROFILE: EDIT PHONE NUMBER AND EMAIL  --------- */
+    $("#navbar .error").hide();
+
+    function editPhone() {
+        var phoneVal = $("#navbar .phone span").text();
+        var phoneInput = $("<input type='text'>");
+        var phoneP = $("<span>")
+        var saveBtn = $("<a class='btn btn-default save'><i class='fa fa-check' aria-hidden='true'></i></a>");
+        var editBtn = $("<a class='btn btn-default edit'><i class='fa fa-pencil' aria-hidden='true'></i></a>");
+        var cancelBtn = $("<a class='btn btn-default cancel'><i class='fa fa-times' aria-hidden='true'></i></a>");
+        phoneInput.val(phoneVal);
+        $("#navbar .phone span").replaceWith(phoneInput);
+        $("#navbar .phone a.edit").replaceWith(saveBtn);
+        $("#navbar .phone").append(cancelBtn);
+
+        $(document).on("click", "#navbar .phone a.save", function() {
+            var newVal = $("#navbar .phone input").val();
+            if (validator.isMobilePhone(newVal, "en-US")) {
+                $(".error").text('').hide();
+                phoneP.text(newVal);
+                $(phoneInput).replaceWith(phoneP);
+                $(saveBtn).replaceWith(editBtn);
+                $(cancelBtn).remove();
+            } else {
+                $(".error").text("Invalid Phone number, please try again");
+                $(".error").show();
+            }
+        });
+        $(document).on("click", "#navbar .phone a.cancel", function() {
+            $(".error").text('').hide();
+            phoneP.text(phoneVal);
+            $(phoneInput).replaceWith(phoneP);
+            $(saveBtn).replaceWith(editBtn);
+            $(cancelBtn).remove();
+        });
+    }
+
+    /* --- */
+    // I know there is a better way
+
+    function editEmail() {
+        var emailVal = $("#navbar .email span").text();
+        var emailInput = $("<input type='text'>");
+        var emailP = $("<span>")
+        var saveBtn = $("<a class='btn btn-default save'><i class='fa fa-check' aria-hidden='true'></i></a>");
+        var editBtn = $("<a class='btn btn-default edit'><i class='fa fa-pencil' aria-hidden='true'></i></a>");
+        var cancelBtn = $("<a class='btn btn-default cancel'><i class='fa fa-times' aria-hidden='true'></i></a>");
+        emailInput.val(emailVal);
+        $("#navbar .email span").replaceWith(emailInput);
+        $("#navbar .email a.edit").replaceWith(saveBtn);
+        $("#navbar .email").append(cancelBtn);
+
+        $(document).on("click", "#navbar .email a.save", function() {
+            var newVal = $("#navbar .email input").val();
+            if (validator.isEmail(newVal)) {
+                $(".error").text('').hide();
+                emailP.text(newVal);
+                $(emailInput).replaceWith(emailP);
+                $(saveBtn).replaceWith(editBtn);
+                $(cancelBtn).remove();
+            } else {
+                $(".error").text("Invalid email address, please try again");
+                $(".error").show();
+            }
+        });
+        $(document).on("click", "#navbar .email a.cancel", function() {
+            $(".error").text('').hide();
+            emailP.text(emailVal);
+            $(emailInput).replaceWith(emailP);
+            $(saveBtn).replaceWith(editBtn);
+            $(cancelBtn).remove();
+        });
+    }
+
+    $(document).on("click", "#navbar .phone .edit", function() {
+        editPhone();
+    });
+
+    $(document).on("click", "#navbar .email .edit", function() {
+        editEmail();
+    });
+
     /* ----------------------------------------
     ------------  CLICK EVENTS  ------------*/
 

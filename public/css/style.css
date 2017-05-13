@@ -259,9 +259,21 @@ nav .logo {
 /* ---------- navbar profile --------- */
 
 #profile {
-    padding-bottom: 10px;
-    border-bottom: 1px solid #ccc;
-    margin-bottom: 10px;
+    height: 60px;
+    border-bottom: 1px solid #baa;
+    margin-bottom: 30px;
+}
+
+#navbar .error {
+    height: 20px;
+    margin-top: -20px;
+    margin-bottom: 0;
+}
+
+#navbar p span {
+    font-size: 18px;
+    display: inline-block;
+    padding: 2px 10px 0 5px;
 }
 
 #profile h3 {
